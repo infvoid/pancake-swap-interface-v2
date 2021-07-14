@@ -13,7 +13,7 @@ const farms: FarmConfig[] = [
       256: '',
     },
     token: tokens.hd,
-    quoteToken: tokens.usdt,
+    quoteToken: tokens.husd,
   },
   {
     pid: 1,
@@ -42,8 +42,8 @@ const farms: FarmConfig[] = [
       128: '0xfc718634DB3e0d178c291De69F27E0AB9D32ca07',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.hdt,
+    token: tokens.hdt,
+    quoteToken: tokens.hd,
   },
   {
     pid: 4,
@@ -52,8 +52,8 @@ const farms: FarmConfig[] = [
       128: '0x2c7eA16f81986a04B3A3Aa9f95631733D3d07cFd',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.eth,
+    token: tokens.eth,
+    quoteToken: tokens.hd,
   },
   {
     pid: 5,
@@ -62,8 +62,8 @@ const farms: FarmConfig[] = [
       128: '0x8F593038Ab8F85bc68DE3F3D7982E9199898EF13',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.wht,
+    token: tokens.wht,
+    quoteToken: tokens.hd,
   },
   {
     pid: 6,
@@ -72,8 +72,8 @@ const farms: FarmConfig[] = [
       128: '0x397d53b4F599D456Ea09734BdFe93D35A2c20050',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.hpt,
+    token: tokens.hpt,
+    quoteToken: tokens.hd,
   },
   {
     pid: 7,
@@ -82,8 +82,8 @@ const farms: FarmConfig[] = [
       128: '0x0B357bf28B57800E73fF4da867b09930cBaddc85',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.boo,
+    token: tokens.boo,
+    quoteToken: tokens.hd,
   },
   {
     pid: 8,
@@ -92,8 +92,8 @@ const farms: FarmConfig[] = [
       128: '0x761D5B3240E54bD4Cda18b8f7ffa5B9bc2A820A8',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.mdx,
+    token: tokens.mdx,
+    quoteToken: tokens.hd,
   },
   {
     pid: 9,
@@ -102,8 +102,8 @@ const farms: FarmConfig[] = [
       128: '0x67C821ad2b76Eb0482191Bc182A9D3db420Df230',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.hdot,
+    token: tokens.hdot,
+    quoteToken: tokens.hd,
   },
 ]
 
