@@ -11,6 +11,7 @@ export interface Token {
   decimals?: any
   projectLink?: any
   busdPrice?: any
+  logoURI?: any
 }
 
 export enum PoolIds {
