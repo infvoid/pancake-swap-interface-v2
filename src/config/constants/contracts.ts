@@ -20,7 +20,7 @@ export default {
       128: '',
     },
     multiCall: {
-      128: '0xb340bfa90D673f2FC273661D88B8E8C071713057',
+      128: '0x0d8c308d94085F909033688bA192cc967c0259bA',
       256: '',
     },
     pancakeProfile: {
