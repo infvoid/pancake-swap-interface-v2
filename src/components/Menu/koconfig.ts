@@ -36,10 +36,6 @@ const config: MenuEntry[] = [
         label: '커뮤니티 풀',
         href: '/Pools',
       },
-      {
-        label: '고정 스테이킹',
-        href: '/FixedStaking',
-      },
     ],
   },
   {
@@ -49,6 +45,10 @@ const config: MenuEntry[] = [
       {
         label: 'IHO',
         href: '/IHO',
+      },
+      {
+        label: 'Leaderboard',
+        href: '/teams',
       },
       {
         label: 'Your Profile',
@@ -70,11 +70,6 @@ const config: MenuEntry[] = [
     label: '투표',
     icon: 'Vote',
     href: '/Vote',
-  },
-  {
-    label: '랜딩허브',
-    icon: 'LendingHUB',
-    href: '/LendingHUB',
   },
   {
     label: '분석',
@@ -99,72 +94,6 @@ const config: MenuEntry[] = [
       },
     ],
   },
-
-  /* {
-    label: 'Home',
-    icon: 'HomeIcon',
-    href: 'https://hubdao.io/',
-  },
-  {
-    label: 'Trade',
-    icon: 'TradeIcon',
-    initialOpenState: true,
-    status: {
-      text: 'MIGRATE',
-      color: 'warning',
-    },
-    items: [
-      {
-        label: 'Bridge',
-        href: 'https://www.binance.org/en/bridge?utm_source=PancakeSwap',
-      },
-     {
-        label: 'Exchange',
-        href: '/swap',
-      },
-      {
-        label: 'Liquidity',
-        href: '/pool',
-      },
-    ],
-  },
-  {
-    label: 'Farms',
-    icon: 'FarmIcon',
-    href: 'https://hubdao.io/farms',
-  },
-  {
-    label: 'Pools',
-    icon: 'PoolIcon',
-    href: 'https://hubdao.io/pools',
-  },
-  {
-    label: 'Info',
-    icon: 'InfoIcon',
-    items: [
-      {
-        label: 'Overview',
-        href: 'https://pancakeswap.info',
-      },
-      {
-        label: 'Tokens',
-        href: 'https://pancakeswap.info/tokens',
-      },
-      {
-        label: 'Pairs',
-        href: 'https://pancakeswap.info/pairs',
-      },
-      {
-        label: 'Accounts',
-        href: 'https://pancakeswap.info/accounts',
-      },
-    ],
-  },
-  {
-    label: 'IFO',
-    icon: 'IfoIcon',
-    href: 'https://hubdao.io/ifo',
-  }, */
 ]
 
 export default config

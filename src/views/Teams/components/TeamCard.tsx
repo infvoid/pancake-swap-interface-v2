@@ -39,9 +39,10 @@ const AvatarWrap = styled.div`
 
 const StyledCard = styled(Card)`
   overflow: visible;
+  border-radius: 34px;
 `
 
-const StyledCardHeader = styled(CardHeader) <{ bg: string }>`
+const StyledCardHeader = styled(CardHeader)<{ bg: string }>`
   position: relative;
   background: url(${({ bg }) => bg});
   background-repeat: no-repeat;
@@ -83,8 +84,8 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
           <AvatarWrap>
             <Avatar src={`/images/teams/${team.images.md}`} alt="team avatar" />
           </AvatarWrap>
-          <TeamName color={team.textColor}>{team.name}</TeamName>
-          <Text as="p" color={team.textColor}>
+          <TeamName color="#fff">{team.name}</TeamName>
+          <Text as="p" color="#fff">
             {t(team.description)}
           </Text>
         </StyledCardHeader>

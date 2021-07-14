@@ -21,7 +21,6 @@ import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
-import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
@@ -49,7 +48,7 @@ const ControlStretch = styled(Flex)`
   }
 `
 const FlexStyle = styled(Flex)`
-  display:flex;
+  display: flex;
   align-items: center;
   flex-direction: row;
   ${Text} {
@@ -62,7 +61,7 @@ const HeadingStyle = styled(Heading) <{ fontsize: string }>`
   color: #ffffff;
 `
 const PageHeaderV2Style = styled(PageHeaderV2) <{ isDark: any }>`
-  background:${({ isDark }) => isDark ? "#11122e" : "#1f1e47"};
+  background: ${({ isDark }) => (isDark ? '#11122e' : '#1f1e47')};
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
@@ -76,7 +75,7 @@ const Pools: React.FC = () => {
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'hubdao_farm_view' })
+  const [ viewMode ] = useState("CARD")
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
@@ -104,7 +103,7 @@ const Pools: React.FC = () => {
         }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [finishedPools, accountHasVaultShares],
+    [finishedPools, accountHasVaultShares]
   )
   const stakedOnlyOpenPools = useMemo(
     () =>
@@ -114,7 +113,7 @@ const Pools: React.FC = () => {
         }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [openPools, accountHasVaultShares],
+    [openPools, accountHasVaultShares]
   )
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
@@ -157,7 +156,7 @@ const Pools: React.FC = () => {
         return orderBy(
           poolsToSort,
           (pool: Pool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
-          'desc',
+          'desc'
         )
       case 'earned':
         return orderBy(
@@ -172,17 +171,17 @@ const Pools: React.FC = () => {
                 cakeAtLastUserAction,
                 userShares,
                 pricePerFullShare,
-                pool.earningTokenPrice,
+                pool.earningTokenPrice
               ).autoUsdToDisplay
               : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
           },
-          'desc',
+          'desc'
         )
       case 'totalStaked':
         return orderBy(
           poolsToSort,
           (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
-          'desc',
+          'desc'
         )
       default:
         return poolsToSort
@@ -200,7 +199,7 @@ const Pools: React.FC = () => {
     if (searchQuery) {
       const lowercaseQuery = latinise(searchQuery.toLowerCase())
       chosenPools = chosenPools.filter((pool) =>
-        latinise(pool.earningToken.symbol.toLowerCase()).includes(lowercaseQuery),
+        latinise(pool.earningToken.symbol.toLowerCase()).includes(lowercaseQuery)
       )
     }
 
@@ -214,7 +213,7 @@ const Pools: React.FC = () => {
           <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
-        ),
+        )
       )}
     </CardLayout>
   )
@@ -231,11 +230,11 @@ const Pools: React.FC = () => {
               {t('Community Pool')}
             </HeadingStyle>
             <HeadingStyle fontsize="24px" size="md" color="text">
-              {t('Stake Liquidity Pool(LP) tokens to earn.')}
+              {t('Stake tokens to harvest')}
             </HeadingStyle>
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <HelpButton />
+            {/* <HelpButton /> */}
             <BountyCard />
           </Flex>
         </Flex>
@@ -246,9 +245,9 @@ const Pools: React.FC = () => {
             stakedOnly={stakedOnly}
             setStakedOnly={setStakedOnly}
             hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
           />
+          {/* // viewMode={viewMode} */}
+          {/* // setViewMode={setViewMode} */}
           <SearchSortContainer>
             <FlexStyle flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">

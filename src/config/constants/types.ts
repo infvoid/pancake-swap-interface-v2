@@ -1,4 +1,5 @@
-import { TranslatableText } from 'state/types'
+import BigNumber from 'bignumber.js'
+import { SerializedBigNumber,TranslatableText } from 'state/types'
 
 export interface Address {
   256?: string
@@ -44,11 +45,17 @@ export interface Ifo {
   [PoolIds.poolUnlimited]: IfoPoolInfo
 }
 
+export enum FarmCategory {
+  'HD'  = 'HD',
+  'HDT' = 'HDT',
+  'BKC' = 'BKC',
+}
+
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
-  'CORE' = 'Core',
-  'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
-  'AUTO' = 'Auto',
+  'CORE'      = 'Core',
+  'HT'        = 'HT', // Pools using native HT behave differently than pools using a token
+  'AUTO'      = 'Auto',
 }
 
 export interface FarmConfig {
@@ -57,6 +64,7 @@ export interface FarmConfig {
   lpAddresses: Address
   token: Token
   quoteToken: Token
+  farmCategory: FarmCategory
   multiplier?: string
   isCommunity?: boolean
   dual?: {
@@ -103,8 +111,8 @@ export type NftSource = {
 }
 
 export enum NftType {
-  PANCAKE = 'pancake',
-  MIXIE = 'mixie',
+  PANCAKE = 'hubdao',
+  // MIXIE = 'mixie',
 }
 
 export type Nft = {
@@ -153,4 +161,29 @@ export type PageMeta = {
   title: any
   description?: any
   image?: any
+}
+
+// lottery
+
+export enum LotteryStatus {
+  PENDING = 'pending',
+  OPEN = 'open',
+  CLOSE = 'close',
+  CLAIMABLE = 'claimable',
+}
+
+export interface LotteryTicket {
+  id: string
+  number: string
+  status: boolean
+  rewardBracket?: number
+  roundId?: string
+  cakeReward?: SerializedBigNumber
+}
+
+export interface LotteryTicketClaimData {
+  ticketsWithUnclaimedRewards: LotteryTicket[]
+  allWinningTickets: LotteryTicket[]
+  cakeTotal: BigNumber
+  roundId: string
 }

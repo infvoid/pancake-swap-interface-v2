@@ -15,8 +15,12 @@ import voting from './voting'
 
 import farms from './farms'
 import pools from './pools'
+import collectibles from './collectibles'
+import achievements from './achievements'
+import teams from './teams'
 import block from './block'
 import profile from './profile'
+import lottery from './lottery'
 import { getThemeCache } from '../utils/theme'
 
 type MergedState = {
@@ -41,8 +45,12 @@ const store = configureStore({
     toasts,
     farms,
     pools,
+    collectibles,
+    achievements,
+    teams,
     block,
     profile,
+    lottery,
     voting
   },
   middleware: getDefaultMiddleware().concat(save({ states: PERSISTED_KEYS })),

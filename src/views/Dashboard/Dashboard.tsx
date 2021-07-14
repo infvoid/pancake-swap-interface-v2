@@ -4,6 +4,8 @@ import BigNumber from 'bignumber.js'
 import { ChainId } from '@pancakeswap/sdk'
 import styled from 'styled-components'
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
+import { useTranslation } from 'hooks/useI18n'
+import { LogoIcon } from '@pancakeswap-libs/uikit'
 import { Farm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
@@ -13,6 +15,7 @@ import { latinise } from 'utils/latinise'
 import useTheme from 'hooks/useTheme'
 import { FarmWithStakedValue } from '../Farms/components/FarmCard/FarmCard'
 import { RowProps } from '../Farms/components/FarmTable/Row'
+import Echarts from './Echarts'
 
 const Header = styled.div`
   padding-top: 50px;
@@ -23,19 +26,18 @@ const Header = styled.div`
   svg {
     height: 62px;
   }
+  .app-svg {
+    display: none;
+  }
+  @media screen and (max-width: 1024px) {
+    .pc-svg {
+      display: none;
+    }
+    .app-svg {
+      display: block;
+    }
+  }
 `
-// const Logo = styled.img`
-//   width: 62px;
-//   height: 62px;
-//   border-radius: 50%;
-//   border: 1px solid #f00;
-//   margin-right: 12px;
-// `
-// const MyTitle = styled.div`
-//   font-weight: 600;
-//   font-size: 28px;
-//   color: #2f303f;
-// `
 const Content = styled.div`
   height: 59px;
   opacity: 0.85;
@@ -49,19 +51,30 @@ const Content = styled.div`
 `
 const Block = styled.div`
   width: 1124px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 0 20px;
+  }
   margin: 0 auto;
 `
 const BlockItem = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `
 const Earn = styled.div`
-  width: 463px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
   height: 164px;
   padding: 24px 26px 42px 30px;
   border-radius: 8px;
-  background: #2f303f;
+  background: linear-gradient(to left, #444667 12%, #2f303f 43%);
+  border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
   color: ${({ theme }) => (theme.isDark ? '#fff2c4' : '#ffffff')};
   .title {
     font-family: NotoSansCJKkr;
@@ -74,12 +87,18 @@ const Earn = styled.div`
   }
   .block {
     margin-top: 9px;
+    @media screen and (max-width: 1024px) {
+      margin-top: 40px;
+    }
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     .apy {
       font-family: NotoSansCJKkr;
       font-size: 42px;
+      @media screen and (max-width: 1024px) {
+        font-size: 21px;
+      }
       font-weight: bold;
       font-stretch: normal;
       font-style: normal;
@@ -97,24 +116,33 @@ const Earn = styled.div`
       text-align: right;
       font-weight: 500;
       margin-bottom: 7px;
+      @media screen and (max-width: 1024px) {
+        margin-bottom: 0;
+      }
     }
   }
 `
 const Price = styled.div`
   width: 639px;
-  height: 164px;
   padding: 17px 29px 22px 28px;
+  @media screen and (max-width: 1024px) {
+    padding: 8px 18px 11px 14px;
+    width: 100%;
+    flex-direction: column;
+  }
   border-radius: 8px;
-  /* box-shadow: 3px 4px 6px 0 #d8d8d8; */
-  /* border: solid 1px #d8d8d8; */
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;
-
+  box-shadow: 3px 4px 6px 0 ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
+  border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
   p {
     margin-top: 8px;
     font-family: NotoSansCJKkr;
     font-size: 16px;
+    @media screen and (max-width: 1024px) {
+      font-size: 14px;
+    }
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
@@ -127,32 +155,41 @@ const Price = styled.div`
   .right {
     border-left: 1px solid #979797;
     padding-left: 41.5px;
+    @media screen and (max-width: 1024px) {
+      padding-left: 0px;
+      border-left: none;
+    }
   }
 `
 const Tlv = styled.div`
   width: 100%;
   height: 235px;
-  padding: 21px 43px 18px 30px;
   border-radius: 8px;
-  /* box-shadow: 4px 4px 6px 1px #e7e7e7; */
-  /* border: solid 1px #d8d8d8; */
+  border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
+  box-shadow: 3px 4px 6px 0 ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
   background-color: #ffffff;
 `
 const Pairs = styled.div`
   width: 100%;
-  /* height: 284px; */
   padding: 15px 48px 18px 28px;
+  @media screen and (max-width: 1024px) {
+    padding: 7px 14px 9px 7px;
+  }
   border-radius: 8px;
-  /* box-shadow: 3px 4px 6px 0 #d8d8d8; */
-  /* border: solid 1px #d8d8d8; */
+  box-shadow: 3px 4px 6px 0 ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
+  border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
   background-color: #ffffff;
   color: #000;
   .title {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 14px;
     .font {
       font-family: NotoSansCJKkr;
       font-size: 26px;
+      @media screen and (max-width: 1024px) {
+        font-size: 14px;
+      }
       font-weight: bold;
       font-stretch: normal;
       font-style: normal;
@@ -181,31 +218,51 @@ const Pairs = styled.div`
       line-height: 50px;
       margin: 8px 0 9px;
       padding: 9px 112px 9px 12px;
+      @media screen and (max-width: 1024px) {
+        padding: 9px 0px 9px 12px;
+      }
       border-radius: 6px;
       background-color: #f5f5f5;
       color: ${({ theme }) => (theme.isDark ? '#000000' : '#000000')};
       div {
         flex: 1;
+        @media screen and (max-width: 1024px) {
+          font-size: 14px;
+        }
+      }
+      .mytitle {
+        @media screen and (max-width: 1024px) {
+        }
       }
       .button-info {
         display: flex;
         .Add {
           width: 182px;
+          @media screen and (max-width: 1024px) {
+            width: 80%;
+            overflow: hidden;
+          }
           height: 32px;
           line-height: 32px;
           text-align: center;
           border-radius: 4px;
-          background-image: linear-gradient(to left, #ffe505, #ffc81c 0%);
+          background-image: linear-gradient(to left, #ffe505, #ffc81c 50%);
         }
         .Trade {
           margin-left: 33px;
           width: 91px;
+          font-size: 16px;
+          @media screen and (max-width: 1024px) {
+            margin-left: 0px;
+            width: 100%;
+            overflow: hidden;
+            font-size: 14px;
+          }
           height: 32px;
           line-height: 32px;
           border-radius: 4px;
-          background-image: linear-gradient(to left, #44465e, #2f303f 0%);
+          background-image: linear-gradient(to left, #44465e, #2f303f 50%);
           font-family: NotoSansCJKkr;
-          font-size: 16px;
           font-weight: 500;
           text-align: center;
           color: #ffffff;
@@ -214,6 +271,9 @@ const Pairs = styled.div`
       .curr {
         display: flex;
         position: relative;
+        @media screen and (max-width: 1024px) {
+          display: none;
+        }
         .curr1 {
           width: 28px;
           height: 28px;
@@ -240,12 +300,21 @@ const Pairs = styled.div`
       .Stake,
       .APY {
         width: 188px;
+        @media screen and (max-width: 1024px) {
+          width: 100%;
+        }
       }
       .Action {
         width: 306px;
+        @media screen and (max-width: 1024px) {
+          width: 100%;
+        }
       }
       .Tokens {
         margin: 3px 24px 1px 188px;
+        @media screen and (max-width: 1024px) {
+          display: none;
+        }
       }
     }
   }
@@ -253,6 +322,7 @@ const Pairs = styled.div`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Dashboard: React.FC = () => {
+  const { t } = useTranslation()
   const { isDark } = useTheme()
   const textColor = isDark ? '#ffefb4' : '#392324'
   const { pathname } = useLocation()
@@ -375,7 +445,7 @@ const Dashboard: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('HUBDAO', '')
 
     const row: RowProps = {
       apr: {
@@ -413,7 +483,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Header>
-        <svg viewBox="0 0 381.54 82.55">
+        <svg className="pc-svg" viewBox="0 0 381.54 82.55">
           <defs>
             <linearGradient
               id="lg_14"
@@ -479,8 +549,7 @@ const Dashboard: React.FC = () => {
             </g>
           </g>
         </svg>
-        {/* <Logo /> */}
-        {/* <MyTitle>HubDao</MyTitle> */}
+        <LogoIcon className="app-svg" width="50px" />
       </Header>
       <Content>DECENTRALIZED FINANCIAL ECOSYSTEM BASED ON GOVERNANCE. </Content>
       <Block>
@@ -489,7 +558,7 @@ const Dashboard: React.FC = () => {
             <div className="title">Earn up to </div>
             <div className="block">
               <div className="apy">1993% APY</div>
-              <div className="Stake">In Stake HUB</div>
+              <div className="Stake">In Stake HUB {'>'}</div>
             </div>
           </Earn>
           <Price>
@@ -506,12 +575,14 @@ const Dashboard: React.FC = () => {
           </Price>
         </BlockItem>
         <BlockItem>
-          <Tlv>1</Tlv>
+          <Tlv>
+            <Echarts />
+          </Tlv>
         </BlockItem>
         <BlockItem>
           <Pairs>
             <div className="title">
-              <div className="font">Paris</div>
+              <div className="font">{t("Pairs")}</div>
               <div className="right">2021-05-19 오후 10:00 기준</div>
             </div>
             <div className="table">
@@ -525,10 +596,9 @@ const Dashboard: React.FC = () => {
 
                 {rowData.map((item) => (
                   <div className="table-body-item" key={item.farm.label}>
-                    <div>{item.farm.label}</div>
+                    <div className="mytitle">{item.farm.label}</div>
                     <div>{`${item.apr?.value}%`}</div>
                     <div className="button-info">
-                      {/*  */}
                       <Link to={`/add/${item.farm.quoteToken.address[128]}/${item.farm.token.address[128]}`}>
                         <div className="Add">Add Liquidity</div>
                       </Link>

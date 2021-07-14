@@ -18,7 +18,7 @@ const replaceDynamicString = (foundTranslation: string, key) => {
  */
 export const getTranslation = (translations: Array<any>, translationId: number, fallback: string,key?:any) => {
   if (translations === null || translations.length === 0) {
-    if(fallback.includes('%')){
+    if(fallback.includes('%') && key !== undefined){
       return replaceDynamicString(fallback, key)
     }
     return fallback
@@ -29,7 +29,7 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
   }
   const includesVariable = translatedString.includes('%')
   // 如果字符串中包含%说明字符串需要被替换，并且拥有第二个值
-  if (includesVariable) {
+  if (includesVariable && key !== undefined) {
     return replaceDynamicString(translatedString, key)
   }
   return translatedString

@@ -1,7 +1,7 @@
 const tokens = {
   bnb: {
     symbol: 'HT',
-    projectLink: 'https://hecoinfo.com/',
+    projectLink: 'https://hecoinfo.com',
     logoURI: '/images/coins/ht.png',
   },
   wbnb: {
@@ -35,6 +35,11 @@ const tokens = {
     logoURI: 'https://s2.coinmarketcap.com/static/img/coins/64x64/4779.png',
   },
 
+  ht: {
+    symbol: 'HT',
+    projectLink: 'https://hecoinfo.com',
+    logoURI: '/images/coins/ht.png',
+  },
   wht: {
     symbol: 'WHT',
     address: {
@@ -105,6 +110,16 @@ const tokens = {
     projectLink: 'https://www.htokens.finance',
     logoURI: 'https://mdex.co/token-icons/heco/0xe499ef4616993730ced0f31fa2703b92b50bb536.png',
   },
+  bkc: {
+    symbol: 'BKC',
+    address: {
+      128: '0x36278870A563f5F2964016eed3a6E329375F6A6E',
+      256: '',
+    },
+    decimals: 18,
+    projectLink: 'https://app.hubdao.io',
+    logoURI: 'https://info.hubdao.io/coin/0x36278870A563f5F2964016eed3a6E329375F6A6E.svg',
+  },
   boo: {
     symbol: 'BOO',
     address: {
@@ -144,6 +159,16 @@ const tokens = {
     decimals: 18,
     projectLink: 'http://flux.01.finance/heco',
     logoURI: 'https://mdex.co/token-icons/heco/0xd10852df03ea8b8af0cc0b09cac3f7dbb15e0433.png',
+  },
+  hbtc: {
+    symbol: 'HBTC',
+    address: {
+      128: '0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa',
+      256: '',
+    },
+    decimals: 18,
+    projectLink: 'https://www.htokens.finance/en-us',
+    logoURI: 'https://mdex.co/token-icons/heco/0x66a79d23e58475d2738179ca52cd0b41d73f0bea.png',
   },
 }
 

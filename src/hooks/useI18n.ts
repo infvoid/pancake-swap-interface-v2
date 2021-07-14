@@ -28,8 +28,8 @@ export const useTranslation = () => {
 
   return {
     t: useCallback(
-      (fallback: string,key=fallback) => {
-        return getTranslation(translations, 0, fallback,key)
+      (fallback: string, key?: any) => {
+        return getTranslation(translations, 0, fallback, key)
       },
       [translations]
     ),

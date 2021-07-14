@@ -3,8 +3,8 @@ import { Team } from './types'
 const teams: Team[] = [
   {
     id: 1,
-    name: 'Syrup Storm',
-    description: "The storm's a-comin! Watch out! These bulls are stampeding in a syrupy surge!",
+    name: 'Saturn Farmers',
+    description: "Crypto Warrior Group to conquer Mars. a new generation of Trading Corps.",
     images: {
       lg: 'syrup-storm-lg.png',
       md: 'syrup-storm-md.png',
@@ -12,15 +12,15 @@ const teams: Team[] = [
       alt: 'syrup-storm-alt.png',
       ipfs: 'https://gateway.pinata.cloud/ipfs/QmXKzSojwzYjtDCVgR6mVx7w7DbyYpS7zip4ovJB9fQdMG/syrup-storm.png',
     },
-    background: 'syrup-storm-bg.svg',
+    background: 'syrup-storm-bg.png',
     textColor: '#191326',
     users: 0,
     points: 0,
   },
   {
     id: 2,
-    name: 'Fearsome Flippers',
-    description: "The flippening is coming. Don't get in these bunnies' way, or you'll get flipped, too!",
+    name: 'Mars Traders',
+    description: "Financial Project for Saturn Migration. Professional Yield Farming Corps.",
     images: {
       lg: 'fearsome-flippers-lg.png',
       md: 'fearsome-flippers-md.png',
@@ -28,15 +28,15 @@ const teams: Team[] = [
       alt: 'fearsome-flippers-alt.png',
       ipfs: 'https://gateway.pinata.cloud/ipfs/QmXKzSojwzYjtDCVgR6mVx7w7DbyYpS7zip4ovJB9fQdMG/fearsome-flippers.png',
     },
-    background: 'fearsome-flippers-bg.svg',
+    background: 'fearsome-flippers-bg.png',
     textColor: '#FFFFFF',
     users: 0,
     points: 0,
   },
   {
     id: 3,
-    name: 'Chaotic Cakers',
-    description: 'Can you stand the heat? Stay out of the kitchen or you might get burned to a crisp!',
+    name: 'Jupiter Investors',
+    description: 'Special group of insights with a unique soul. Promising Project Discovery and Investment Corps.',
     images: {
       lg: 'chaotic-cakers-lg.png',
       md: 'chaotic-cakers-md.png',
@@ -44,7 +44,7 @@ const teams: Team[] = [
       alt: 'chaotic-cakers-alt.png',
       ipfs: 'https://gateway.pinata.cloud/ipfs/QmXKzSojwzYjtDCVgR6mVx7w7DbyYpS7zip4ovJB9fQdMG/chaotic-cakers.png',
     },
-    background: 'chaotic-cakers-bg.svg',
+    background: 'chaotic-cakers-bg.png',
     textColor: '#191326',
     users: 0,
     points: 0,

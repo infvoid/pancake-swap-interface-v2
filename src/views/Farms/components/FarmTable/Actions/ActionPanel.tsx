@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'hooks/useI18n'
-import { LinkExternal, Text } from '@pancakeswap-libs/uikit'
+import { LinkExternal, Text, Flex } from '@pancakeswap-libs/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBscScanAddressUrl } from 'utils/bscscan'
@@ -50,7 +50,7 @@ const Container = styled.div<{ expanded }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => (!theme.isDark ? '#fff' : '#23224e')};
   display: flex;
   width: 100%;
   flex-direction: column-reverse;
@@ -154,6 +154,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   return (
     <Container expanded={expanded}>
       <InfoContainer>
+        <Flex mb="24px">
+          <TagsContainer>
+            {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
+            {dual ? <DualTag /> : null}
+          </TagsContainer>
+        </Flex>
         {isActive && (
           <StakeContainer>
             <StyledLinkExternal href={`/#/add/${liquidityUrlPathParts}`}>
@@ -163,10 +169,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         )}
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
         <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
-        <TagsContainer>
-          {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-          {dual ? <DualTag /> : null}
-        </TagsContainer>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>

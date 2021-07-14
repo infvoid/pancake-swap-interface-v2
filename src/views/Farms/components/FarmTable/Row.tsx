@@ -51,7 +51,11 @@ const CellInner = styled.div`
 `
 const StyledTr = styled.tr`
   cursor: pointer;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  border-bottom: 2px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : '#0f0f3f')};
+  background: ${({ theme }) => (!theme.isDark ? '#fff' : '#23224e')};
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
 `
 
 const EarnedMobileCell = styled.td`

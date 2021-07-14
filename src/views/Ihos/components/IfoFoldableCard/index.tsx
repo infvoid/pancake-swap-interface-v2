@@ -32,45 +32,73 @@ interface IfoFoldableCardProps {
   isInitiallyVisible: boolean
 }
 
+const CardRibbonStyle = styled.div`
+  border-radius: 6px;
+  background-image: linear-gradient(to bottom, #e4ede1, #ffffff 87%);
+  color: white;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: -17px;
+  text-align: center;
+  transform: rotateX(45deg);
+  width: 180px;
+  left: 16px;
+  z-index: 99999;
+  height: 57px;
+  line-height: 57px;
+  text-align: center;
+  font-family: NotoSansCJKkr;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #263757;
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+`
+
 const getRibbonComponent = (ifo: Ifo, status: IfoStatus, t: any) => {
   if (status === 'coming_soon') {
     return <CardRibbon variantColor="textDisabled" ribbonPosition="left" text={t('Coming Soon')} />
   }
 
   if (status === 'live' || (status === 'finished' && ifo.isActive)) {
-    return (
-      <CardRibbon
-        variantColor="primary"
-        ribbonPosition="left"
-        style={{ textTransform: 'uppercase' }}
-        text={status === 'live' ? `${t('Live')}!` : `${t('Finished')}!`}
-      />
-    )
+    return <CardRibbonStyle>{status === 'live' ? `${t('Live')}!` : `${t('Finished')}!`}</CardRibbonStyle>
   }
 
   return null
 }
 
 const StyledCard = styled(Card)`
-  max-width: 736px;
+  max-width: 732px;
   width: 100%;
   margin: auto;
+  overflow: revert;
+  border-radius: 15px;
 `
 
-const Header = styled(CardHeader) <{ ifoId: string }>`
+const Header = styled(CardHeader)<{ ifoId: string }>`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 112px;
-  background-repeat: no-repeat;
+  background-image: url('/images/ihobg.png');
+  background-size: 100% 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  /* background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
+  background-image: ${({ ifoId }) => `url('/images/ihos/${ifoId}-bg.svg')`}; */
+  /* background-image: linear-gradient(307deg, #11124d 19%, rgba(55, 60, 99, 0.88) 103%, rgba(30, 29, 71, 0) 100%); */
 `
 
 const FoldableContent = styled.div<{ isVisible: boolean; isActive: boolean }>`
   display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   background: ${({ isActive, theme }) => (isActive ? theme.colors.gradients.bubblegum : theme.colors.dropdown)};
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 `
 
 const CardsWrapper = styled.div<{ singleCard: boolean }>`
@@ -94,7 +122,6 @@ const StyledCardBody = styled(CardBody)`
 const StyledCardFooter = styled(CardFooter)`
   text-align: center;
   padding: 8px;
-  background: ${({ theme }) => theme.colors.backgroundAlt};
 `
 
 const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, walletIfoData, isInitiallyVisible }) => {
@@ -118,7 +145,7 @@ const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, w
       setEnableStatus(EnableStatus.ENABLED)
       toastSuccess(
         t('Successfully Enabled!'),
-        t('You can now participate in the %symbol% IFO.', { symbol: ifo.token.symbol }),
+        t('You can now participate in the %symbol% IHO.', { symbol: ifo.token.symbol })
       )
     } catch (error) {
       setEnableStatus(EnableStatus.DISABLED)
