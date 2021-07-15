@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Tag, Flex, Heading, Image } from '@pancakeswap-libs/uikit'
+import { Tag, Flex, Heading } from '@pancakeswap-libs/uikit'
 import { CommunityTag, CoreTag } from 'components/Tags'
 import { Token } from 'config/constants/types'
 // import TokenPairImage from 'components/TokenPairImage'
-import { getAddress } from 'utils/addressHelpers'
-import tokens from 'config/constants/tokens'
+// import { getAddress } from 'utils/addressHelpers'
+// import tokens from 'config/constants/tokens'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -46,7 +46,7 @@ const StyledPrimaryImage = styled.div`
   background-color: #fff;
   border-radius: 50%;
 
-  &:before {
+  /* &:before {
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.25);
     content: "";
@@ -56,9 +56,11 @@ const StyledPrimaryImage = styled.div`
     top: 0;
     width: 100%;
     z-index: 7;
-  }
+  } */
 `;
 const TokenImage = styled.img`
+border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
 `;
 const StyledSecondaryImage = styled.div`
   position: absolute;
@@ -68,7 +70,7 @@ const StyledSecondaryImage = styled.div`
     max-height: 32px;
     max-width: 32px;
 
-  &:before {
+  /* &:before {
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.25);
     content: "";
@@ -78,7 +80,7 @@ const StyledSecondaryImage = styled.div`
     top: 0;
     width: 100%;
     z-index: 7;
-  }
+  } */
 `;
 const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm,
   token,

@@ -32,10 +32,66 @@ const TokenWrapper = styled.div`
     width: 40px;
   }
 `
+const TokenPairImage = styled.div`
+  max-height: 64px;
+  max-width: 64px;
+  position: relative;
+  width: 100%;
+  &:after {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+`
+const StyledPrimaryImage = styled.div`
+  position: absolute;
+  width: 82%;
+  inset: auto 0px 0px auto;
+  z-index: 6;
+  max-height: 64px;
+  max-width: 64px;
+  background-color: #fff;
+  border-radius: 50%;
 
+  /* &:before {
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 7;
+  } */
+`;
+const TokenImage = styled.img`
+border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+`;
+const StyledSecondaryImage = styled.div`
+  position: absolute;
+    width: 50%;
+    inset: 0px auto auto 0px;
+    z-index: 5;
+    max-height: 32px;
+    max-width: 32px;
+
+  /* &:before {
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 7;
+  } */
+`;
 const Farm: React.FunctionComponent<FarmProps> = ({
-  // token,
-  // quoteToken,
+  token,
+  quoteToken,
   label, pid }) => {
   const { stakedBalance } = useFarmUser(pid)
   const { t } = useTranslation()
@@ -58,6 +114,14 @@ const Farm: React.FunctionComponent<FarmProps> = ({
       <TokenWrapper>
         {/* 注释 */}
         {/* <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={40} height={40} /> */}
+        <TokenPairImage>
+        <StyledPrimaryImage  >
+          <TokenImage src={token.logoURI} />
+        </StyledPrimaryImage>
+        <StyledSecondaryImage  >
+          <TokenImage src={quoteToken.logoURI} />
+        </StyledSecondaryImage>
+      </TokenPairImage>
       </TokenWrapper>
       <div>
         {handleRenderFarming()}
