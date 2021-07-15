@@ -34,11 +34,10 @@ export const useTranslation = () => {
 
   return {
     t: useCallback(
-      (fallback: string,a="a") => {
-        if(a){
-          return getTranslation(translations, 0, fallback)
-        }
-        return getTranslation(translations, 0, fallback)
+      (fallback: string,key=fallback) => {
+        // console.log(fallback)
+        // console.log(key)
+        return getTranslation(translations, 0, fallback,key)
       },
       [translations]
     ),

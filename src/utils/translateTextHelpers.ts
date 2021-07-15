@@ -3,12 +3,17 @@ import { TranslationsContext } from 'hooks/TranslationsContext'
 
 const variableRegex = /%(.*?)%/
 
-const replaceDynamicString = (foundTranslation: string, fallback: string) => {
+const replaceDynamicString = (foundTranslation: string, key) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const stringToReplace = variableRegex.exec(foundTranslation)![0]
   const indexToReplace = foundTranslation.split(' ').indexOf(stringToReplace)
-  const fallbackValueAtIndex = fallback.split(' ')[indexToReplace]
-  return foundTranslation.replace(stringToReplace, fallbackValueAtIndex)
+  // const fallbackValueAtIndex = key.split(' ')[indexToReplace]
+  // console.log(fallback.split(' '))
+  // console.log(indexToReplace)
+  // console.log(stringToReplace)
+  // console.log(fallbackValueAtIndex)
+  const value = key[stringToReplace.replaceAll("%","")]
+  return foundTranslation.replace(stringToReplace, value)
 }
 /**
  *
@@ -17,11 +22,12 @@ const replaceDynamicString = (foundTranslation: string, fallback: string) => {
  * @param fallback 默认传递的语言
  * @returns 返回应该显示的语言
  */
-export const getTranslation = (translations: Array<any>, translationId: number, fallback: string) => {
+export const getTranslation = (translations: Array<any>, translationId: number, fallback: string,key?:any) => {
   // console.log('---------------------')
   // console.log(translations)
-  // console.log(translationId)
+  // // console.log(translationId)
   // console.log(fallback)
+  // console.log(key)
   // console.log('---------------------')
   // 由于 translations 变量始终是个空值不才用此值来进行判断
   // const foundTranslation = translations.find((translation) => {
@@ -31,6 +37,9 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
   // console.log(translations[fallback])
   // console.log(translations)
   if (translations === null) {
+    if(fallback.includes('%')){
+      return replaceDynamicString(fallback, key)
+    }
     return fallback
   }
   const translatedString = translations[fallback]
@@ -41,8 +50,10 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
   // debugger
   // console.log(fallback)
   const includesVariable = translatedString.includes('%')
+  // console.log(includesVariable)
+  // 如果字符串中包含%说明字符串需要被替换，并且拥有第二个值
   if (includesVariable) {
-    return replaceDynamicString(translatedString, fallback)
+    return replaceDynamicString(translatedString, key)
   }
   return translatedString
 }
