@@ -10,6 +10,7 @@ const replaceDynamicString = (foundTranslation: string, key) => {
   const value = key[variableRegex.exec(foundTranslation)![1]]
   return foundTranslation.replace(stringToReplace, value)
 }
+
 /**
  *
  * @param translations
@@ -38,7 +39,7 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
 
 export const TranslateString = (translationId: number, fallback: string) => {
   const { translations } = useContext(TranslationsContext)
-  // console.log(translations)
+
   if (translations[0] === 'error') {
     return fallback
   }
