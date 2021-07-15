@@ -6,9 +6,9 @@ const variableRegex = /%(.*?)%/
 const replaceDynamicString = (foundTranslation: string, key) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const stringToReplace = variableRegex.exec(foundTranslation)![0]
-  const indexToReplace = foundTranslation.split(' ').indexOf(stringToReplace)
-  const value = key[variableRegex.exec(foundTranslation)![1]]
-  return foundTranslation.replace(stringToReplace, value)
+  // const indexToReplace = foundTranslation.split(' ').indexOf(stringToReplace)
+  const value = key[variableRegex.exec(foundTranslation)[1]]
+  return foundTranslation.replaceAll(stringToReplace, value)
 }
 /**
  *
@@ -18,7 +18,7 @@ const replaceDynamicString = (foundTranslation: string, key) => {
  * @returns 返回应该显示的语言
  */
 export const getTranslation = (translations: Array<any>, translationId: number, fallback: string,key?:any) => {
-  if (translations === null) {
+  if (translations === null || translations.length === 0) {
     if(fallback.includes('%')){
       return replaceDynamicString(fallback, key)
     }

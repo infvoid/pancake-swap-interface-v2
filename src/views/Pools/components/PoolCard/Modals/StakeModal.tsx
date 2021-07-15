@@ -10,7 +10,7 @@ import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import { getAddress } from 'utils/addressHelpers'
+// import { getAddress } from 'utils/addressHelpers'
 import PercentageButton from './PercentageButton'
 
 interface StakeModalProps {
@@ -119,7 +119,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
       }
     }
   }
-
   return (
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
@@ -138,7 +137,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
-            src={`/images/tokens/${getAddress(stakingToken.address)}.png`}
+            src={stakingToken.logoURI}
             width={24}
             height={24}
             alt={stakingToken.symbol}
