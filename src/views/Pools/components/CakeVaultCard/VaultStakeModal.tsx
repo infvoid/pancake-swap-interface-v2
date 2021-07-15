@@ -157,7 +157,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       handleDeposit(convertedStakeAmount)
     }
   }
-  console.log(stakingToken)
+
   return (
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
