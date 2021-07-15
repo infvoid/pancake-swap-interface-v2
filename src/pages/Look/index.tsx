@@ -9,9 +9,7 @@ const Look = () => {
   const { t } = useTranslation()
   return (
     <div className="look">
-      {/* {t("Coming Soon !")} */}
-      {/* {t("Coming Soon !")} */}
-      {t('%error% %error2% - Please try again.', { error: "错误",error2: "错误" })}
+      {t("Coming Soon !")}
     </div>
   )
 }
