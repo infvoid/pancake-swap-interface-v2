@@ -1,7 +1,13 @@
 import React from 'react'
 import { useTranslation } from 'hooks/useI18n'
-import styled from 'styled-components'
-import { Modal, Text, Button, OpenNewIcon, Link } from '@pancakeswap-libs/uikit'
+// import styled from 'styled-components'
+import {
+  Modal,
+  Text,
+  Button,
+  // OpenNewIcon,
+  // Link,
+} from '@pancakeswap-libs/uikit'
 import { BASE_EXCHANGE_URL } from 'config'
 import useTheme from 'hooks/useTheme'
 
@@ -10,15 +16,13 @@ interface NotEnoughTokensModalProps {
   onDismiss?: () => void
 }
 
-const StyledLink = styled(Link)`
-  width: 100%;
-`
+// const StyledLink = styled(Link)`
+//   width: 100%;
+// `
 
 const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol, onDismiss }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
-  console.log(tokenSymbol)
-  console.log(t('%symbol% required', { symbol: tokenSymbol }))
   return (
     <Modal
       title={t('%symbol% required', { symbol: tokenSymbol })}

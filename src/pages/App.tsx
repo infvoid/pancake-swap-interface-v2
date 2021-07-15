@@ -34,7 +34,7 @@ const AppWrapper = styled.div<{ isDark: any }>`
   align-items: flex-start;
   overflow-x: hidden;
   /* . {
-    color={isDark ? "#030226" : "#ffffff"} 
+    color={isDark ? "#030226" : "#ffffff"}
   } */
   .button-checked {
     color: ${({ isDark }) => isDark ? "#030226" : "#ffffff"}
