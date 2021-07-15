@@ -233,7 +233,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
+          <LinkExternal href={`http://info.hubdao.io/token/${getAddress(earningToken.address)}`} bold={false}>
             {t('Info site')}
           </LinkExternal>
         </Flex>
