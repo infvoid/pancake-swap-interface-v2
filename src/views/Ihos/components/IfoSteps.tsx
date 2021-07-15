@@ -59,7 +59,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
               {t('Activate your Profile')}
             </Heading>
             <Text color="textSubtle" small mb="16px">
-              {t('You’ll need an active PancakeSwap Profile to take part in an IFO!')}
+              {t('You’ll need an active PancakeSwap Profile to take part in an IHO!')}
             </Text>
             {isStepValid ? (
               <Text color="success" bold>
@@ -113,7 +113,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'After the IFO sales finish, you can claim any IFO tokens that you bought, and any unspent CAKE-BNB LP tokens will be returned to your wallet.',
+                'After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent CAKE-BNB LP tokens will be returned to your wallet.',
               )}
             </Text>
           </CardBody>
