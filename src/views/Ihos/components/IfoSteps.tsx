@@ -1,7 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import every from 'lodash/every'
-import { Stepper, Step, StepStatus, Card, CardBody, Heading, Text, Button, Link, OpenNewIcon } from '@pancakeswap-libs/uikit'
+import {
+  Stepper,
+  Step,
+  StepStatus,
+  Card,
+  CardBody,
+  Heading,
+  Text,
+  Button,
+  Link,
+  OpenNewIcon,
+} from '@pancakeswap-libs/uikit'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { Ifo } from 'config/constants/types'
 import { WalletIfoData } from 'views/Ihos/types'
@@ -59,7 +70,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
               {t('Activate your Profile')}
             </Heading>
             <Text color="textSubtle" small mb="16px">
-              {t('You’ll need an active PancakeSwap Profile to take part in an IHO!')}
+              {t('You’ll need an active HubDao Profile to take part in an IHO!')}
             </Text>
             {isStepValid ? (
               <Text color="success" bold>
@@ -113,7 +124,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent CAKE-BNB LP tokens will be returned to your wallet.',
+                'After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent CAKE-BNB LP tokens will be returned to your wallet.'
               )}
             </Text>
           </CardBody>

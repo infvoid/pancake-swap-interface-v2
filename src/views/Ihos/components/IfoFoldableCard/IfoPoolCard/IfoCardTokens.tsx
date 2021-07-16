@@ -65,9 +65,9 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
   const { t } = useTranslation()
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t(
-      'Sorry, you didn’t contribute enough LP tokens to meet the minimum threshold. You didn’t buy anything in this sale, but you can still reclaim your LP tokens.',
+      'Sorry, you didn’t contribute enough LP tokens to meet the minimum threshold. You didn’t buy anything in this sale, but you can still reclaim your LP tokens.'
     ),
-    { placement: 'bottom' },
+    { placement: 'bottom' }
   )
 
   const publicPoolCharacteristics = publicIfoData[poolId]
@@ -84,9 +84,9 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
     }
     if (account && !hasProfile) {
       if (publicIfoData.status === 'finished') {
-        return <Text textAlign="center">{t('Activate PancakeSwap Profile to take part in next IFO‘s!')}</Text>
+        return <Text textAlign="center">{t('Activate HubDao Profile to take part in next IFO‘s!')}</Text>
       }
-      return <Text textAlign="center">{t('You need an active PancakeSwap Profile to take part in an IFO!')}</Text>
+      return <Text textAlign="center">{t('You need an active HubDao Profile to take part in an IFO!')}</Text>
     }
     if (publicIfoData.status === 'coming_soon') {
       return (

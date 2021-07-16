@@ -16,15 +16,15 @@ const FAQ = () => {
   return (
     <Wrapper>
       <Heading as="h2" size="xl" color="secondary" mb="24px">
-        {TranslateString(1, "Learn more")}
+        {TranslateString(1, 'Learn more')}
       </Heading>
       <Text bold mb="24px">
-        {TranslateString(1, "Here’s what you need to know about the PancakeSwap LP Token Migration.")}
+        {TranslateString(1, 'Here’s what you need to know about the HubDao LP Token Migration.')}
       </Text>
       <Card>
         <CardHeader>
           <Text fontSize="24px" color="secondary" bold>
-            {TranslateString(1, "FAQ")}
+            {TranslateString(1, 'FAQ')}
           </Text>
         </CardHeader>
         <CardBody>

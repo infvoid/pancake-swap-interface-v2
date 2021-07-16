@@ -153,13 +153,13 @@ const Swap = () => {
 
   const parsedAmounts = showWrap
     ? {
-      [Field.INPUT]: parsedAmount,
-      [Field.OUTPUT]: parsedAmount,
-    }
+        [Field.INPUT]: parsedAmount,
+        [Field.OUTPUT]: parsedAmount,
+      }
     : {
-      [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-      [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
-    }
+        [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
+      }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
@@ -405,7 +405,7 @@ const Swap = () => {
                   </ArrowWrapper>
                   {recipient === null && !showWrap && isExpertMode ? (
                     <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
-                      {TranslateString(1, "+ Add a send (optional)")}
+                      {TranslateString(1, '+ Add a send (optional)')}
                     </LinkStyledButton>
                   ) : null}
                 </AutoRow>
@@ -432,7 +432,7 @@ const Swap = () => {
                       <ArrowDown size="16" color={theme.colors.textSubtle} />
                     </ArrowWrapper>
                     <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                      {TranslateString(1, "- Remove send")}
+                      {TranslateString(1, '- Remove send')}
                     </LinkStyledButton>
                   </AutoRow>
                   <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
@@ -466,11 +466,11 @@ const Swap = () => {
               {disableSwap && (
                 <Flex alignItems="center" justifyContent="center" mb="1rem">
                   <Text color="failure">
-                    {TranslateString(1, "Please use")}{' '}
+                    {TranslateString(1, 'Please use')}{' '}
                     <StyledLink external href="https://app.hubdao.io">
-                      {TranslateString(1, "PancakeSwap V2")}
+                      {TranslateString(1, 'HubDao V2')}
                     </StyledLink>{' '}
-                    {TranslateString(1, "to make this trade")}
+                    {TranslateString(1, 'to make this trade')}
                   </Text>
                 </Flex>
               )}
@@ -495,12 +495,12 @@ const Swap = () => {
                   >
                     {approval === ApprovalState.PENDING ? (
                       <AutoRow gap="6px" justify="center">
-                        {TranslateString(1, "Approving")} <Loader stroke="white" />
+                        {TranslateString(1, 'Approving')} <Loader stroke="white" />
                       </AutoRow>
                     ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
-                      TranslateString(1, "Approved")
+                      TranslateString(1, 'Approved')
                     ) : (
-                      `${TranslateString(1, "Approve")} ${currencies[Field.INPUT]?.symbol}`
+                      `${TranslateString(1, 'Approve')} ${currencies[Field.INPUT]?.symbol}`
                     )}
                   </Button>
                   <Button
@@ -556,8 +556,8 @@ const Swap = () => {
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
-                      ? TranslateString(1, "Price Impact Too High")
-                      : `${TranslateString(1, 'Swap')} ${priceImpactSeverity > 2 ? TranslateString(1, "Anyway") : ''}`)}
+                      ? TranslateString(1, 'Price Impact Too High')
+                      : `${TranslateString(1, 'Swap')} ${priceImpactSeverity > 2 ? TranslateString(1, 'Anyway') : ''}`)}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}

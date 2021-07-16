@@ -31,11 +31,11 @@ const Migration = () => {
     <>
       <Header>
         <Heading as="h1" size="xxl" color="secondary" mb="24px">
-          {TranslateString(1, "LP Token Migration")}
+          {TranslateString(1, 'LP Token Migration')}
         </Heading>
         <Text bold fontSize="24px">
-          {TranslateString(1, "PancakeSwap is being upgraded!")} <br />
-          {TranslateString(1, "Migrate your LP tokens to continue earning.")}
+          {TranslateString(1, 'HubDao is being upgraded!')} <br />
+          {TranslateString(1, 'Migrate your LP tokens to continue earning.')}
         </Text>
       </Header>
       <Container>
@@ -46,32 +46,37 @@ const Migration = () => {
           <ArrowSeparator />
           <Card mb="32px">
             <CardHeader>
-              <Text bold>{TranslateString(1, "Add Liquidity to new Liquidity Pools")}</Text>
+              <Text bold>{TranslateString(1, 'Add Liquidity to new Liquidity Pools')}</Text>
               <Text small color="textSubtle">
-                {TranslateString(1, "Stake your tokens in the updated Liquidity Pools")}
+                {TranslateString(1, 'Stake your tokens in the updated Liquidity Pools')}
               </Text>
             </CardHeader>
             <CardBody>
-              <Text mb="24px">{TranslateString(1, "Any new liquidity you add will use the updated system by default. Simple!")}</Text>
+              <Text mb="24px">
+                {TranslateString(1, 'Any new liquidity you add will use the updated system by default. Simple!')}
+              </Text>
               <Button as={Link} external href="https://app.hubdao.io/#/pool" style={{ width: '100%' }}>
-                {TranslateString(1, "Add liquidity")}
+                {TranslateString(1, 'Add liquidity')}
               </Button>
             </CardBody>
           </Card>
           <ArrowSeparator />
           <Card>
             <CardHeader>
-              <Text bold>{TranslateString(1, "Stake in New Farms")}</Text>
+              <Text bold>{TranslateString(1, 'Stake in New Farms')}</Text>
               <Text small color="textSubtle">
-                {TranslateString(1, "Stake your updated LP tokens in PancakeSwap farms")}
+                {TranslateString(1, 'Stake your updated LP tokens in HubDao farms')}
               </Text>
             </CardHeader>
             <CardBody>
               <Text mb="24px">
-                {TranslateString(1, "If you are able to stake in a farm with your new LP tokens, that means it’s the updated type. Stake as usual and you’re done!")}
+                {TranslateString(
+                  1,
+                  'If you are able to stake in a farm with your new LP tokens, that means it’s the updated type. Stake as usual and you’re done!'
+                )}
               </Text>
               <Button as={Link} external href="https://hubdao.io/farms" style={{ width: '100%' }}>
-                {TranslateString(1, "Go to farms")}
+                {TranslateString(1, 'Go to farms')}
               </Button>
             </CardBody>
           </Card>
