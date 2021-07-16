@@ -7,6 +7,7 @@ import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '
 import { abi as IUniswapV2Router02ABI } from '../constants/abis/IUniswapV2Router02.json'
 import { ROUTER_ADDRESS } from '../constants'
 import { TokenAddressMap } from '../state/lists/hooks'
+import { BASE_BSC_SCAN_URLS } from '../config'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -35,6 +36,30 @@ export function getBscScanLink(chainId: ChainId, data: string, type: 'transactio
     case 'address':
     default: {
       return `${prefix}/address/${data}`
+    }
+  }
+}
+
+export function getBscScanLink2(
+  data: string | number,
+  type: 'transaction' | 'token' | 'address' | 'block' | 'countdown',
+  chainId: ChainId = ChainId.MAINNET,
+): string {
+  switch (type) {
+    case 'transaction': {
+      return `${BASE_BSC_SCAN_URLS[chainId]}/tx/${data}`
+    }
+    case 'token': {
+      return `${BASE_BSC_SCAN_URLS[chainId]}/token/${data}`
+    }
+    case 'block': {
+      return `${BASE_BSC_SCAN_URLS[chainId]}/block/${data}`
+    }
+    case 'countdown': {
+      return `${BASE_BSC_SCAN_URLS[chainId]}/block/countdown/${data}`
+    }
+    default: {
+      return `${BASE_BSC_SCAN_URLS[chainId]}/address/${data}`
     }
   }
 }

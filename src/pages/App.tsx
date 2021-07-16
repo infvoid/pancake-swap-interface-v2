@@ -14,15 +14,14 @@ import Ihos from '../views/Ihos'
 import Pro from '../views/Profile'
 import Pools from '../views/Pools'
 import Farms from '../views/Farms'
+import Vote from '../views/Voting'
 import Dashboard from '../views/Dashboard'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import Pool from './Pool'
 import Look from './Look'
-import {
-  EN, allLanguages
-} from '../constants/localisation/languageCodes'
+import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 
@@ -38,7 +37,7 @@ const AppWrapper = styled.div<{ isDark: any }>`
     color={isDark ? "#030226" : "#ffffff"}
   } */
   .button-checked {
-    color: ${({ isDark }) => isDark ? "#030226" : "#ffffff"}
+    color: ${({ isDark }) => (isDark ? '#030226' : '#ffffff')};
   }
 `
 
@@ -126,8 +125,8 @@ export default function App() {
                       <Route path="/IHO" component={Ihos} />
                       <Route path="/profile" component={Pro} />
                       <Route exact strict path="/Lottery" component={Look} />
-                      <Route exact strict path="/Vote" component={Look} />
                       <Route path="/Farms" component={Farms} />
+                      <Route path="/Vote" component={Vote} />
                       <Route path="/Pools" component={Pools} />
                       <Route exact strict path="/LendingHUB" component={Look} />
 

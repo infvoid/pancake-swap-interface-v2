@@ -49,11 +49,9 @@ const CellInner = styled.div`
     padding-right: 32px;
   }
 `
-// 注释
-// border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
 const StyledTr = styled.tr`
   cursor: pointer;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
 const EarnedMobileCell = styled.td`

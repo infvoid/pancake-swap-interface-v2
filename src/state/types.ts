@@ -256,6 +256,92 @@ export interface PredictionsState {
   bets: BetData
 }
 
+// Voting
+
+/* eslint-disable camelcase */
+/**
+ * @see https://hub.snapshot.page/graphql
+ */
+ export interface VoteWhere {
+  id?: string
+  id_in?: string[]
+  voter?: string
+  voter_in?: string[]
+  proposal?: string
+  proposal_in?: string[]
+}
+
+// Vote
+export enum SnapshotCommand {
+  PROPOSAL = 'proposal',
+  VOTE = 'vote',
+}
+
+export enum ProposalState {
+  ACTIVE = 'active',
+  PENDING = 'pending',
+  CLOSED = 'closed',
+}
+
+export interface Space {
+  id: string
+  name: string
+}
+
+
+export interface VotingState {
+  proposalLoadingStatus: VotingStateLoadingStatus
+  proposals: {
+    [key: string]: Proposal
+  }
+  voteLoadingStatus: VotingStateLoadingStatus
+  votes: {
+    [key: string]: Vote[]
+  }
+}
+
+export interface Proposal {
+  author: string
+  body: string
+  choices: string[]
+  end: number
+  id: string
+  snapshot: string
+  space: Space
+  start: number
+  state: ProposalState
+  title: string
+}
+
+export interface Vote {
+  id: string
+  voter: string
+  created: number
+  space: Space
+  proposal: {
+    choices: Proposal['choices']
+  }
+  choice: number
+  metadata?: {
+    votingPower: string
+    verificationHash: string
+  }
+  _inValid?: boolean
+}
+
+export enum VotingStateLoadingStatus {
+  INITIAL = 'initial',
+  IDLE = 'idle',
+  LOADING = 'loading',
+  ERROR = 'error',
+}
+
+export enum ProposalType {
+  ALL = 'all',
+  CORE = 'core',
+  COMMUNITY = 'community',
+}
+
 // Global state
 
 export interface State {
@@ -267,4 +353,5 @@ export interface State {
   profile: ProfileState
   teams: TeamsState
   collectibles: CollectiblesState
+  voting: VotingState
 }

@@ -1,6 +1,17 @@
 import React from 'react'
-import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon, RefreshIcon, AutoRenewIcon, TagProps } from '@pancakeswap-libs/uikit'
-import { useTranslation } from "hooks/useI18n"
+import {
+  Tag,
+  VerifiedIcon,
+  CommunityIcon,
+  BinanceIcon,
+  RefreshIcon,
+  AutoRenewIcon,
+  TagProps,
+  BlockIcon,
+  TimerIcon,
+  VoteIcon,
+} from '@pancakeswap-libs/uikit'
+import { useTranslation } from 'hooks/useI18n'
 
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
@@ -55,4 +66,31 @@ const CompoundingPoolTag: React.FC<TagProps> = (props) => {
   )
 }
 
-export { CoreTag, CommunityTag, BinanceTag, DualTag, ManualPoolTag, CompoundingPoolTag }
+const SoonTag: React.FC<TagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="binance" startIcon={<TimerIcon width="18px" color="success" mr="4px" />} {...props}>
+      {t('Soon')}
+    </Tag>
+  )
+}
+
+const ClosedTag: React.FC<TagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="textDisabled" startIcon={<BlockIcon width="18px" color="textDisabled" mr="4px" />} {...props}>
+      {t('Closed')}
+    </Tag>
+  )
+}
+
+const VoteNowTag: React.FC<TagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="success" startIcon={<VoteIcon width="18px" color="success" mr="4px" />} {...props}>
+      {t('Vote Now')}
+    </Tag>
+  )
+}
+
+export { CoreTag, CommunityTag, BinanceTag, DualTag, ManualPoolTag, CompoundingPoolTag, ClosedTag, SoonTag, VoteNowTag }

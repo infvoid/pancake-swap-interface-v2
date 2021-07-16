@@ -18,7 +18,7 @@ export interface FarmWithStakedValue extends Farm {
   liquidity?: BigNumber
 }
 
-const AccentGradient = keyframes`  
+const AccentGradient = keyframes`
   0% {
     background-position: 50% 0%;
   }
@@ -56,9 +56,8 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
   text-align: center;
 `
 
-  /* background-color: ${({ theme }) => theme.colors.cardBorder}; */
 const Divider = styled.div`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.cardBorder};
   height: 1px;
   margin: 28px auto;
   width: 100%;

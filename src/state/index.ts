@@ -11,6 +11,7 @@ import lists from './lists/reducer'
 import burn from './burn/reducer'
 import multicall from './multicall/reducer'
 import toasts from './toasts'
+import voting from './voting'
 
 import farms from './farms'
 import pools from './pools'
@@ -42,6 +43,7 @@ const store = configureStore({
     pools,
     block,
     profile,
+    voting
   },
   middleware: getDefaultMiddleware().concat(save({ states: PERSISTED_KEYS })),
   preloadedState: loadedState,
