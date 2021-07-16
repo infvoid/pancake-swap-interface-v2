@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect, useCallback, useState, useMemo } from 'react'
+import { useLocation, Link } from 'react-router-dom'
+import BigNumber from 'bignumber.js'
+import { ChainId } from '@pancakeswap/sdk'
 import styled from 'styled-components'
+import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
+import { Farm } from 'state/types'
+import { getBalanceNumber } from 'utils/formatBalance'
+import { getFarmApr } from 'utils/apr'
+import { orderBy } from 'lodash'
+import isArchivedPid from 'utils/farmHelpers'
+import { latinise } from 'utils/latinise'
 import useTheme from 'hooks/useTheme'
-import curr1 from '../../images/icons.png'
+import { FarmWithStakedValue } from '../Farms/components/FarmCard/FarmCard'
+import { RowProps } from '../Farms/components/FarmTable/Row'
 
 const Header = styled.div`
   padding-top: 50px;
@@ -123,13 +134,13 @@ const Tlv = styled.div`
   height: 235px;
   padding: 21px 43px 18px 30px;
   border-radius: 8px;
-  box-shadow: 4px 4px 6px 1px #e7e7e7;
-  border: solid 1px #d8d8d8;
+  /* box-shadow: 4px 4px 6px 1px #e7e7e7; */
+  /* border: solid 1px #d8d8d8; */
   background-color: #ffffff;
 `
 const Pairs = styled.div`
   width: 100%;
-  height: 284px;
+  /* height: 284px; */
   padding: 15px 48px 18px 28px;
   border-radius: 8px;
   /* box-shadow: 3px 4px 6px 0 #d8d8d8; */
@@ -239,12 +250,166 @@ const Pairs = styled.div`
     }
   }
 `
+const NUMBER_OF_FARMS_VISIBLE = 12
+
 const Dashboard: React.FC = () => {
   const { isDark } = useTheme()
-
-  console.log(isDark)
   const textColor = isDark ? '#ffefb4' : '#392324'
+  const { pathname } = useLocation()
+  const { data: farmsLP } = useFarms()
+  const cakePrice = usePriceCakeBusd()
+  const [query] = useState('')
+  const [sortOption] = useState('hot')
 
+  const isArchived = pathname.includes('archived')
+  const isInactive = pathname.includes('history')
+  const isActive = !isInactive && !isArchived
+
+  usePollFarmsData(isArchived)
+
+  // Users with no wallet connected should see 0 as Earned amount
+  // Connected users should see loading indicator until first userData has loaded
+
+  const [stakedOnly, setStakedOnly] = useState(!isActive)
+  useEffect(() => {
+    setStakedOnly(!isActive)
+  }, [isActive])
+
+  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
+
+  const stakedOnlyFarms = activeFarms.filter(
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0)
+  )
+
+  const stakedInactiveFarms = inactiveFarms.filter(
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0)
+  )
+
+  const stakedArchivedFarms = archivedFarms.filter(
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0)
+  )
+
+  const farmsList = useCallback(
+    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+        if (!farm.lpTotalInQuoteToken || !farm.quoteToken.busdPrice) {
+          return farm
+        }
+        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
+        const apr = isActive
+          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
+          : 0
+
+        return { ...farm, apr, liquidity: totalLiquidity }
+      })
+
+      if (query) {
+        const lowercaseQuery = latinise(query.toLowerCase())
+        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
+          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
+        })
+      }
+      return farmsToDisplayWithAPR
+    },
+    [cakePrice, query, isActive]
+  )
+
+  const [numberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
+
+  const farmsStakedMemoized = useMemo(() => {
+    let farmsStaked = []
+
+    const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
+      switch (sortOption) {
+        case 'apr':
+          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
+        case 'multiplier':
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
+            'desc'
+          )
+        case 'earned':
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
+            'desc'
+          )
+        case 'liquidity':
+          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+        default:
+          return farms
+      }
+    }
+
+    if (isActive) {
+      farmsStaked = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
+    }
+    if (isInactive) {
+      farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms) : farmsList(inactiveFarms)
+    }
+    if (isArchived) {
+      farmsStaked = stakedOnly ? farmsList(stakedArchivedFarms) : farmsList(archivedFarms)
+    }
+
+    return sortFarms(farmsStaked).slice(0, numberOfFarmsVisible)
+  }, [
+    sortOption,
+    activeFarms,
+    farmsList,
+    inactiveFarms,
+    archivedFarms,
+    isActive,
+    isInactive,
+    isArchived,
+    stakedArchivedFarms,
+    stakedInactiveFarms,
+    stakedOnly,
+    stakedOnlyFarms,
+    numberOfFarmsVisible,
+  ])
+
+  const rowData = farmsStakedMemoized.map((farm) => {
+    const { token, quoteToken } = farm
+    const tokenAddress = token.address
+    const quoteTokenAddress = quoteToken.address
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+
+    const row: RowProps = {
+      apr: {
+        value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        multiplier: farm.multiplier,
+        lpLabel,
+        tokenAddress,
+        quoteTokenAddress,
+        cakePrice,
+        originalValue: farm.apr,
+      },
+      farm: {
+        label: lpLabel,
+        pid: farm.pid,
+        token: farm.token,
+        quoteToken: farm.quoteToken,
+      },
+      earned: {
+        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
+        pid: farm.pid,
+      },
+      liquidity: {
+        liquidity: farm.liquidity,
+      },
+      multiplier: {
+        multiplier: farm.multiplier,
+      },
+      details: farm,
+    }
+
+    return row
+  })
+
+  console.log(rowData)
   return (
     <>
       <Header>
@@ -353,61 +518,34 @@ const Dashboard: React.FC = () => {
               <div className="table-body">
                 <div className="head">
                   <div className="Stake">Stake</div>
-                  <div className="APY">APY</div>
+                  <div className="APY">APR</div>
                   <div className="Action">Action</div>
                   <div className="Tokens">Tokens</div>
                 </div>
 
-                <div className="table-body-item">
-                  <div>HD-HTLP</div>
-                  <div>293%</div>
-                  <div className="button-info">
-                    <div className="Add">Add Liquidity</div>
-                    <div className="Trade">Trade</div>
-                  </div>
-                  <div className="curr">
-                    <div className="curr1">
-                      <img src={curr1} alt="" />
+                {rowData.map((item) => (
+                  <div className="table-body-item" key={item.farm.label}>
+                    <div>{item.farm.label}</div>
+                    <div>{`${item.apr?.value}%`}</div>
+                    <div className="button-info">
+                      {/*  */}
+                      <Link to={`/add/${item.farm.quoteToken.address[128]}/${item.farm.token.address[128]}`}>
+                        <div className="Add">Add Liquidity</div>
+                      </Link>
+                      <Link to={`/swap/${item.farm.quoteToken.address[128]}/${item.farm.token.address[128]}`}>
+                        <div className="Trade">Trade</div>
+                      </Link>
                     </div>
-                    <div className="curr2">
-                      <img src={curr1} alt="" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="table-body-item">
-                  <div>HD-HTLP</div>
-                  <div>293%</div>
-                  <div className="button-info">
-                    <div className="Add">Add Liquidity</div>
-                    <div className="Trade">Trade</div>
-                  </div>
-                  <div className="curr">
-                    <div className="curr1">
-                      <img src={curr1} alt="" />
-                    </div>
-                    <div className="curr2">
-                      <img src={curr1} alt="" />
+                    <div className="curr">
+                      <div className="curr1">
+                        <img src={item.farm.quoteToken.logoURI} alt="" />
+                      </div>
+                      <div className="curr2">
+                        <img src={item.farm.token.logoURI} alt="" />
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="table-body-item">
-                  <div>HD-HTLP</div>
-                  <div>293%</div>
-                  <div className="button-info">
-                    <div className="Add">Add Liquidity</div>
-                    <div className="Trade">Trade</div>
-                  </div>
-                  <div className="curr">
-                    <div className="curr1">
-                      <img src={curr1} alt="" />
-                    </div>
-                    <div className="curr2">
-                      <img src={curr1} alt="" />
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </Pairs>

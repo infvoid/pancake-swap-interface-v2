@@ -26,7 +26,7 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
-import coinpng from "../../config/SketchPngbcf0d3.png"
+import coinpng from '../../config/SketchPngbcf0d3.png'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -91,12 +91,15 @@ const ViewControls = styled.div`
     }
   }
 `
-const PageHeaderV2Style = styled(PageHeaderV2) <{ isDark?: any }>`
+const PageHeaderV2Style = styled(PageHeaderV2)<{ isDark?: any }>`
   padding-top: 16px;
   height: 193px;
   /* background: #11122e; */
   background: none;
-  background-image: ${({ isDark }) => isDark ? "linear-gradient(307deg, #11124D 0%, rgba(55, 60, 99, 0.88) 52%, rgba(30, 29, 71, 0) 100%)" : "linear-gradient(360deg,#11122e 99%,#2c3053 31%,#1e1d47 2%)"};
+  background-image: ${({ isDark }) =>
+    isDark
+      ? 'linear-gradient(307deg, #11124D 0%, rgba(55, 60, 99, 0.88) 52%, rgba(30, 29, 71, 0) 100%)'
+      : 'linear-gradient(360deg,#11122e 99%,#2c3053 31%,#1e1d47 2%)'};
   @media screen and (min-width: 1024px) {
     > div {
       background-image: url(${coinpng});
@@ -107,7 +110,7 @@ const PageHeaderV2Style = styled(PageHeaderV2) <{ isDark?: any }>`
     }
   }
 `
-const HeadingStyle = styled(Heading) <{ fontsize: string }>`
+const HeadingStyle = styled(Heading)<{ fontsize: string }>`
   font-size: ${({ fontsize }) => fontsize};
   color: #fff;
 `
@@ -362,6 +365,7 @@ const Farms: React.FC = () => {
   }
   const { isDark } = useTheme()
 
+  console.log(rowData)
   return (
     <>
       <PageHeaderV2Style isDark={isDark}>
