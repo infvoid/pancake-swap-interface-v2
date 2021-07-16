@@ -50,6 +50,10 @@ const config: MenuEntry[] = [
         label: 'IHO',
         href: '/IHO',
       },
+      {
+        label: 'Your Profile',
+        href: '/profile',
+      },
     ],
   },
   {

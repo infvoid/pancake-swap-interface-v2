@@ -50,6 +50,10 @@ const config: MenuEntry[] = [
         label: 'IHO',
         href: '/IHO',
       },
+      {
+        label: 'Your Profile',
+        href: '/profile',
+      },
     ],
   },
   {
@@ -78,15 +82,6 @@ const config: MenuEntry[] = [
     href: 'https://info.hubdao.io',
   },
   {
-    label: 'Teams & Profile',
-    icon: 'MoreIcon',
-    items: [
-      {
-        label: 'Your Profile',
-        href: '/profile',
-      },
-    ],
-  },{
     label: 'More',
     icon: 'MoreIcon',
     items: [
