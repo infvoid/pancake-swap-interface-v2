@@ -14,6 +14,7 @@ import Ihos from '../views/Ihos'
 import Pro from '../views/Profile'
 import Pools from '../views/Pools'
 import Farms from '../views/Farms'
+import Dashboard from '../views/Dashboard'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
@@ -120,7 +121,7 @@ export default function App() {
                   <Web3ReactManager>
                     <Switch>
                       <Route exact strict path="/look" component={Look} />
-                      <Route exact strict path="/Dashboard" component={Look} />
+                      <Route exact strict path="/Dashboard" component={Dashboard} />
                       <Route exact strict path="/FixedStaking" component={Look} />
                       <Route path="/IHO" component={Ihos} />
                       <Route path="/profile" component={Pro} />
