@@ -15,6 +15,7 @@ import Pro from '../views/Profile'
 import Pools from '../views/Pools'
 import Farms from '../views/Farms'
 import Vote from '../views/Voting'
+import CreateProposal from '../views/Voting/CreateProposal'
 import Dashboard from '../views/Dashboard'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
@@ -127,6 +128,7 @@ export default function App() {
                       <Route exact strict path="/Lottery" component={Look} />
                       <Route path="/Farms" component={Farms} />
                       <Route path="/Vote" component={Vote} />
+                      <Route exact path="/voting/proposal/create" component={CreateProposal} />
                       <Route path="/Pools" component={Pools} />
                       <Route exact strict path="/LendingHUB" component={Look} />
 
