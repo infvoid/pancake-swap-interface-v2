@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTranslation } from 'hooks/useI18n'
 import Container from 'components/layout/Container'
-import DesktopImage from './DesktopImage'
 
 const StyledFooter = styled(Box)`
   background: ${({ theme }) => theme.colors.gradients.bubblegum};
@@ -39,7 +38,6 @@ const Footer = () => {
               {t('Make a Proposal')}
             </Button>
           </Box>
-          <DesktopImage src="/images/voting/voting-bunny.png" width={173} height={234} />
         </Flex>
       </Container>
     </StyledFooter>

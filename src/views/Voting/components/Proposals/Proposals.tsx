@@ -54,7 +54,6 @@ const Proposals = () => {
 
   return (
     <Container>
-      {/* <Container py="40px"> */}
       <Box mb="48px">
         <Breadcrumbs>
           <BreadcrumbLink to="/">{t('Home')}</BreadcrumbLink>

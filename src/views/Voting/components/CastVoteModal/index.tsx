@@ -22,16 +22,7 @@ const CastVoteModal: React.FC<CastVoteModalProps> = ({ onSuccess, proposalId, vo
   const { toastError } = useToast()
   const { library } = useWeb3Provider()
   const { theme } = useTheme()
-  const {
-    isLoading,
-    total,
-    cakeBalance,
-    cakeVaultBalance,
-    cakePoolBalance,
-    poolsBalance,
-    cakeBnbLpBalance,
-    verificationHash,
-  } = useGetVotingPower(block, modalIsOpen)
+  const { isLoading, total } = useGetVotingPower(block, modalIsOpen)
 
   const isStartView = view === ConfirmVoteView.MAIN
   const handleBack = isStartView ? null : () => setView(ConfirmVoteView.MAIN)
@@ -58,7 +49,6 @@ const CastVoteModal: React.FC<CastVoteModalProps> = ({ onSuccess, proposalId, vo
           choice: vote.value,
           metadata: {
             votingPower: total.toString(),
-            verificationHash,
           },
         },
       })
@@ -101,14 +91,7 @@ const CastVoteModal: React.FC<CastVoteModalProps> = ({ onSuccess, proposalId, vo
           />
         )}
         {view === ConfirmVoteView.DETAILS && (
-          <DetailsView
-            total={total}
-            cakeBalance={cakeBalance}
-            cakeVaultBalance={cakeVaultBalance}
-            cakePoolBalance={cakePoolBalance}
-            poolsBalance={poolsBalance}
-            cakeBnbLpBalance={cakeBnbLpBalance}
-          />
+          <DetailsView total={total} />
         )}
       </Box>
     </Modal>

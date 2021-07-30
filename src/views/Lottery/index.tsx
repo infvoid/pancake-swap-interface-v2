@@ -8,7 +8,6 @@ import useTheme from 'hooks/useTheme'
 import { useFetchLottery, useLottery } from 'state/lottery/hooks'
 import {
   LOTTERY_BG,
-  // GET_TICKETS_BG,
   FINISHED_ROUNDS_BG,
   FINISHED_ROUNDS_BG_DARK,
   CHECK_PRIZES_BG,
@@ -44,15 +43,6 @@ const Lottery = () => {
     <LotteryPage>
       <PageSection background={LOTTERY_BG} svgFill={theme.colors.overlay} index={1} hasCurvedDivider={false}>
         <Hero />
-        {/* </PageSection>
-      <PageSection
-        containerProps={{ style: { marginTop: '-30px' } }}
-        background={GET_TICKETS_BG}
-        concaveDivider
-        concaveBackgroundLight="#7645D9"
-        curvePosition="top"
-        index={2}
-      > */}
         <Flex alignItems="center" justifyContent="center" flexDirection="column" pt="100px">
           {status === LotteryStatus.OPEN && (
             <Heading scale="xl" color="#ffffff" mb="24px" textAlign="center">

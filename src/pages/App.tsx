@@ -32,6 +32,7 @@ const Pro = lazy(() => import('../views/Profile'))
 const Pools = lazy(() => import('../views/Pools'))
 const Dashboard = lazy(() => import('../views/Dashboard'))
 const Vote = lazy(() => import('../views/Voting'))
+const Proposal = lazy(() => import('../views/Voting/Proposal'))
 const CreateProposal = lazy(() => import('../views/Voting/CreateProposal'))
 
 const AppWrapper = styled.div<{ isDark: any }>`
@@ -130,8 +131,9 @@ export default function App() {
                       <Route path="/Teams/:id" component={Team} />
                       <Route path="/Pools" component={Pools} />
                       <Route path="/collectibles" component={Collectibles} />
-                      <Route path="/Vote" component={Vote} />
+                      <Route exact path="/voting" component={Vote} />
                       <Route exact path="/voting/proposal/create" component={CreateProposal} />
+                      <Route path="/voting/proposal/:id" component={Proposal} />
 
                       <Route exact strict path="/swap" component={Swap} />
                       <Route exact strict path="/find" component={PoolFinder} />

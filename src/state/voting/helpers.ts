@@ -1,5 +1,5 @@
 import request, { gql } from 'graphql-request'
-import { SNAPSHOT_API, SNAPSHOT_VOTING_API } from 'config/constants/endpoints'
+import { SNAPSHOT_API } from 'config/constants/endpoints'
 import { Proposal, ProposalState, Vote, VoteWhere } from 'state/types'
 import { simpleRpcProvider } from 'utils/providers'
 
@@ -13,7 +13,7 @@ export const getProposals = async (first = 5, skip = 0, state = ProposalState.AC
           skip: $skip
           orderBy: "end"
           orderDirection: desc
-          where: { space_in: "cake.eth", state: $state }
+          where: { space_in: "hubdao.eth", state: $state }
         ) {
           id
           title
@@ -95,33 +95,12 @@ export const getVoteVerificationStatuses = async (
 ): Promise<{ [key: string]: boolean }> => {
   const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
 
-  const votesToVerify = votes.map((vote) => ({
-    address: vote.voter,
-    verificationHash: vote.metadata?.verificationHash,
-    total: vote.metadata?.votingPower,
-  }))
-  const response = await fetch(`${SNAPSHOT_VOTING_API}/verify`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      block: blockNumber,
-      votes: votesToVerify,
-    }),
-  })
-
-  if (!response.ok) {
-    throw new Error(response.statusText)
-  }
-
-  const data = await response.json()
   return votes.reduce((accum, vote) => {
     return {
       ...accum,
-      [vote.id]: data.data[vote.voter.toLowerCase()]?.isValid === true,
+      [vote.id]: true,
     }
-  }, {})
+  }, {[blockNumber]: true})
 }
 
 export const getAllVotes = async (proposalId: string, block?: number, votesPerChunk = 1000): Promise<Vote[]> => {

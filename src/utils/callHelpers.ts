@@ -1,10 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT } from 'config'
 import { ethers } from 'ethers'
-import { FarmCategory } from 'config/constants/types'
-import { getMasterchefContract } from 'utils/contractHelpers'
-import { web3WithArchivedNodeProvider } from './web3'
-import { getBalanceAmount } from './formatBalance'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
 
 export const approve = async (lpContract, masterChefContract, account) => {

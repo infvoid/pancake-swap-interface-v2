@@ -1,8 +1,10 @@
 import BigNumber from 'bignumber.js'
+import { ethers } from 'ethers'
 import { getCakeAddress } from 'utils/addressHelpers'
-import { SNAPSHOT_HUB_API, SNAPSHOT_VOTING_API } from 'config/constants/endpoints'
+import { SNAPSHOT_HUB_API } from 'config/constants/endpoints'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { Proposal, ProposalState, ProposalType, Vote } from 'state/types'
+import { getCakeContract } from 'utils/contractHelpers2'
 import { simpleRpcProvider } from 'utils/providers'
 import { ADMIN_ADDRESS, PANCAKE_SPACE, SNAPSHOT_VERSION } from './config'
 
@@ -39,7 +41,7 @@ export const generateMetaData = () => {
   return {
     plugins: {},
     network: 56,
-    strategies: [{ name: 'cake', params: { symbol: 'CAKE', address: getCakeAddress(), decimals: 18 } }],
+    strategies: [{ name: 'erc20-balance-of', params: { symbol: 'HD', address: getCakeAddress(), decimals: 18 } }],
   }
 }
 
@@ -78,19 +80,9 @@ export const sendSnaphotData = async (message: Message) => {
 
 export const getVotingPower = async (account: string, poolAddresses: string[], block?: number) => {
   const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
-  const response = await fetch(`${SNAPSHOT_VOTING_API}/power`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      address: account,
-      block: blockNumber,
-      poolAddresses,
-    }),
-  })
-  const data = await response.json()
-  return data.data
+  const hdContract = getCakeContract()
+  const response = await hdContract.balanceOf(account)
+  return { total: ethers.utils.formatUnits(response), blockNumber }
 }
 
 export const calculateVoteResults = (votes: Vote[]): { [key: string]: Vote[] } => {

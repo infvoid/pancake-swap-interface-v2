@@ -69,7 +69,7 @@ const config: MenuEntry[] = [
   {
     label: 'Vote',
     icon: 'Vote',
-    href: '/Vote',
+    href: '/voting',
   },
   {
     label: 'Analytics',
