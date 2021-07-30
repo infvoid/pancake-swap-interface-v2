@@ -9,8 +9,7 @@ type ChainTokenList = {
 
 export const CAKE = new Token(
   ChainId.MAINNET,
-  // '0x7Ee95d49De01D15AEFafc18940B5F9Fe3dA1d811',
-  '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+  '0xA161658ad97F70915136B773beecb72Cde221F31',
   18,
   'HD',
   'HubDaoSwap Token'
