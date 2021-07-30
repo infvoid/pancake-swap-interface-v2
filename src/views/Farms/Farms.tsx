@@ -365,7 +365,6 @@ const Farms: React.FC = () => {
   }
   const { isDark } = useTheme()
 
-  console.log(rowData)
   return (
     <>
       <PageHeaderV2Style isDark={isDark}>

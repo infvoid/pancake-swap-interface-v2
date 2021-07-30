@@ -125,7 +125,6 @@ export default function App() {
                       <Route path="/IHO" component={Ihos} />
                       <Route path="/profile" component={Pro} />
                       <Route exact strict path="/Lottery" component={Lottery} />
-                      <Route exact strict path="/Vote" component={Look} />
                       <Route path="/Farms" component={Farms} />
                       <Route exact path="/Teams" component={Teams} />
                       <Route path="/Teams/:id" component={Team} />

@@ -246,8 +246,6 @@ const Pools: React.FC = () => {
             setStakedOnly={setStakedOnly}
             hasStakeInFinishedPools={hasStakeInFinishedPools}
           />
-          {/* // viewMode={viewMode} */}
-          {/* // setViewMode={setViewMode} */}
           <SearchSortContainer>
             <FlexStyle flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
