@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
-import useGetPriceData from './useGetPriceData'
-import { CAKE } from '../constants'
+import { usePriceCakeBusd } from 'state/hooks'
 
 const useGetDocumentTitlePrice = () => {
-  const priceData = useGetPriceData()
-
-  const cakePriceUsd = priceData ? parseFloat(priceData.data[CAKE.address].price) : 0
+  const priceData = usePriceCakeBusd()
+  const cakePriceUsd = priceData.toNumber()
 
   const cakePriceUsdString =
     Number.isNaN(cakePriceUsd) || cakePriceUsd === 0
@@ -16,7 +14,7 @@ const useGetDocumentTitlePrice = () => {
         })}`
 
   useEffect(() => {
-    document.title = `HubDAO-App${cakePriceUsdString}`
+    document.title = `HubDAO${cakePriceUsdString}`
   }, [cakePriceUsdString])
 }
 export default useGetDocumentTitlePrice
