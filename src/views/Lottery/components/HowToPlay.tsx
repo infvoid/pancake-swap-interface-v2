@@ -78,9 +78,7 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
         <Heading mb="10px" scale="md" color="secondary">
           {step.title}
         </Heading>
-        <Text color="textSubtle" scale="md">
-          {step.subtitle}
-        </Text>
+        <Text color="textSubtle">{step.subtitle}</Text>
       </StepCardInner>
     </StyledStepCard>
   )
