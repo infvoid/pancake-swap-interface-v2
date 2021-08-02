@@ -7,7 +7,7 @@ import Container from 'components/layout/Container'
 import DesktopImage from './DesktopImage'
 
 const StyledHero = styled(Box)`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.gradients.bubblegum2};
   padding-bottom: 32px;
   padding-top: 32px;
 `

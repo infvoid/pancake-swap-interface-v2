@@ -6,7 +6,7 @@ import { useTranslation } from 'hooks/useI18n'
 import Container from 'components/layout/Container'
 
 const StyledFooter = styled(Box)`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.gradients.bubblegum2};
   padding-bottom: 32px;
   padding-top: 32px;
 `

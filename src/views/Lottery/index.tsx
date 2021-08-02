@@ -6,12 +6,7 @@ import PageSection from 'components/PageSection'
 import { useTranslation } from 'hooks/useI18n'
 import useTheme from 'hooks/useTheme'
 import { useFetchLottery, useLottery } from 'state/lottery/hooks'
-import {
-  LOTTERY_BG,
-  FINISHED_ROUNDS_BG,
-  FINISHED_ROUNDS_BG_DARK,
-  CHECK_PRIZES_BG,
-} from './pageSectionStyles'
+import { LOTTERY_BG, FINISHED_ROUNDS_BG, FINISHED_ROUNDS_BG_DARK, CHECK_PRIZES_BG2 } from './pageSectionStyles'
 import useGetNextLotteryEvent from './hooks/useGetNextLotteryEvent'
 import useStatusTransitions from './hooks/useStatusTransitions'
 import Hero from './components/Hero'
@@ -63,7 +58,7 @@ const Lottery = () => {
           <NextDrawCard />
         </Flex>
       </PageSection>
-      <PageSection background={CHECK_PRIZES_BG} hasCurvedDivider={false} index={2}>
+      <PageSection background={CHECK_PRIZES_BG2} hasCurvedDivider={false} index={2}>
         <CheckPrizesSection />
       </PageSection>
       <PageSection

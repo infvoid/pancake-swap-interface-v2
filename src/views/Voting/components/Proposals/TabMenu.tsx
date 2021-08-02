@@ -10,7 +10,7 @@ interface TabMenuProps {
 }
 
 const StyledTabMenu = styled.div`
-  background-color: ${({ theme }) => theme.colors.input};
+  background-color: ${({ theme }) => theme.colors.input2};
   padding-top: 16px;
 `
 
