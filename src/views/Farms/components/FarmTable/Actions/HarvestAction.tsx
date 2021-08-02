@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
-import { usePriceCakeBusd } from 'state/hooks'
+import { useBusdPriceFromToken } from 'state/hooks'
 import { useHarvest } from 'hooks/useHarvest'
 import { useTranslation } from 'hooks/useI18n'
 
@@ -29,10 +29,11 @@ const ActionContainerStyle = styled(ActionContainer)`
 
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ farmCategory, pid, userData, userDataReady }) => {
   const earningsBigNumber = new BigNumber(userData.earnings)
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = useBusdPriceFromToken(farmCategory)
   let earnings = BIG_ZERO
   let earningsBusd = 0
   let displayBalance = userDataReady ? earnings.toLocaleString() : <Skeleton width={60} />
+
 
   // If user didn't connect wallet default balance will be 0
   if (!earningsBigNumber.isZero()) {

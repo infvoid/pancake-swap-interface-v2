@@ -85,7 +85,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
           {t('Earned')}
         </Text>
       </Flex>
-      <HarvestAction earnings={earnings} pid={pid} />
+      <HarvestAction category={farm.farmCategory} earnings={earnings} pid={pid} />
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           {farm.lpSymbol}

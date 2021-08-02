@@ -9,11 +9,12 @@ import { useHarvest } from 'hooks/useHarvest'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useWeb3React } from '@web3-react/core'
-import { usePriceCakeBusd } from 'state/hooks'
+import { useBusdPriceFromToken } from 'state/hooks'
 import Balance from 'components/Balance'
 import styled from 'styled-components'
 
 interface FarmCardActionsProps {
+  category?: string
   earnings?: BigNumber
   pid?: number
 }
@@ -23,13 +24,13 @@ const StyleButton = styled(Button)`
   border-radius: 4px;
 `
 
-const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
+const HarvestAction: React.FC<FarmCardActionsProps> = ({ category, earnings, pid }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useHarvest(pid)
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = useBusdPriceFromToken(category)
   const dispatch = useAppDispatch()
   const rawEarningsBalance = account ? getBalanceAmount(earnings) : BIG_ZERO
   const displayBalance = rawEarningsBalance.toFixed(3, BigNumber.ROUND_DOWN)
