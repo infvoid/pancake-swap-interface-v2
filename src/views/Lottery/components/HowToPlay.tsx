@@ -49,6 +49,9 @@ const StyledStepCard = styled(Box)`
   background: ${({ theme }) => theme.colors.cardBorder};
   padding: 1px 1px 3px 1px;
   border-radius: ${({ theme }) => theme.radii.card};
+  @media screen and (min-width: 800px) {
+    border-radius: 50%;
+  }
 `
 
 const StepCardInner = styled(Box)`
@@ -56,6 +59,11 @@ const StepCardInner = styled(Box)`
   padding: 24px;
   background: ${({ theme }) => theme.card.background};
   border-radius: ${({ theme }) => theme.radii.card};
+  text-align: center;
+  @media screen and (min-width: 800px) {
+    border-radius: 50%;
+    overflow: hidden;
+  }
 `
 
 type Step = { title: string; subtitle: string; label: string }
@@ -64,13 +72,15 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
   return (
     <StyledStepCard width="100%">
       <StepCardInner height={['200px', '180px', null, '200px']}>
-        <Text mb="16px" fontSize="12px" bold textAlign="right" textTransform="uppercase">
+        <Text mb="16px" fontSize="12px" bold textAlign="center" textTransform="uppercase">
           {step.label}
         </Text>
-        <Heading mb="16px" scale="lg" color="secondary">
+        <Heading mb="10px" scale="md" color="secondary">
           {step.title}
         </Heading>
-        <Text color="textSubtle">{step.subtitle}</Text>
+        <Text color="textSubtle" scale="md">
+          {step.subtitle}
+        </Text>
       </StepCardInner>
     </StyledStepCard>
   )
@@ -259,6 +269,11 @@ const PoolAllocations2 = () => {
 const GappedFlex = styled(Flex)`
   gap: 16px;
 `
+const StyleGappedFlex = styled(GappedFlex)`
+  @media screen and (max-width: 800px) {
+    flex-flow: column-reverse;
+  }
+`
 
 const HowToPlay: React.FC = () => {
   const { t } = useTranslation()
@@ -282,22 +297,24 @@ const HowToPlay: React.FC = () => {
   ]
   return (
     <Box width="100%">
-      <Flex mb="40px" alignItems="center" flexDirection="column">
-        <Heading mb="24px" scale="xl" color="secondary">
-          {t('How to Play')}
-        </Heading>
-        <Text textAlign="center">
-          {t(
-            'If the digits on your tickets match the winning numbers in the correct order, you win a portion of the prize pool.'
-          )}
-        </Text>
-        <Text>{t('Simple!')}</Text>
+      <Flex flexDirection={['column', 'column', 'column', 'row']} alignItems="center">
+        <Flex mb="40px" alignItems="center" flexDirection="column">
+          <Heading mb="24px" scale="xl" color="secondary">
+            {t('How to Play')}
+          </Heading>
+          <Text textAlign="center">
+            {t(
+              'If the digits on your tickets match the winning numbers in the correct order, you win a portion of the prize pool.'
+            )}
+          </Text>
+          <Text>{t('Simple!')}</Text>
+        </Flex>
+        <StepContainer>
+          {steps.map((step) => (
+            <StepCard key={step.label} step={step} />
+          ))}
+        </StepContainer>
       </Flex>
-      <StepContainer>
-        {steps.map((step) => (
-          <StepCard key={step.label} step={step} />
-        ))}
-      </StepContainer>
       <Divider />
       <GappedFlex flexDirection={['column', 'column', 'column', 'row']}>
         <Flex flex="2" flexDirection="column">
@@ -337,8 +354,11 @@ const HowToPlay: React.FC = () => {
         </Flex>
       </GappedFlex>
       <Divider />
-      <GappedFlex flexDirection={['column', 'column', 'column', 'row']}>
-        <Flex flex="2" flexDirection="column">
+      <StyleGappedFlex flexDirection={['column', 'column', 'column', 'row']}>
+        <Flex flex="1" justifyContent="center">
+          <PoolAllocations2 />
+        </Flex>
+        <Flex flex="2" ml="20px" flexDirection="column">
           <Heading mb="24px" scale="lg" color="secondary">
             {t('Prize Funds')}
           </Heading>
@@ -381,10 +401,7 @@ const HowToPlay: React.FC = () => {
             </li>
           </BulletList>
         </Flex>
-        <Flex flex="1" justifyContent="center">
-          <PoolAllocations2 />
-        </Flex>
-      </GappedFlex>
+      </StyleGappedFlex>
     </Box>
   )
 }
