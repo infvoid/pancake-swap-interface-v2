@@ -12,6 +12,7 @@ const Chrome = styled.div`
 const Content = styled.div`
   flex: 1;
   height: 100%;
+  padding: 80px 0;
 `
 
 const Voting = () => {
