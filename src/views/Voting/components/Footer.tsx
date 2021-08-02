@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Text, Heading, ProposalIcon, Flex } from '@pancakeswap-libs/uikit'
+import { Box, StyleButton, Text, Heading, WritingIcon, Flex } from '@pancakeswap-libs/uikit'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTranslation } from 'hooks/useI18n'
@@ -20,23 +20,23 @@ const Footer = () => {
         <Flex alignItems="center" justifyContent="space-between">
           <Box pr="32px">
             <Heading as="h2" scale="lg" mb="16px">
-              {t('Got a suggestion?')}
+              {t('Do you have any suggestions?')}
             </Heading>
             <Text as="p">
-              {t('Community proposals are a great way to see how the community feels about your ideas.')}
-            </Text>
-            <Text as="p" mb="16px">
               {t(
-                "They won't necessarily be implemented if the community votes successful, but suggestions with a lot of community support may be made into Core proposals."
+                'Voting is a good way to see what ideas others have and are thinking.The proposal succeeded in voting.Even so, it does not reflect immediately.'
               )}
             </Text>
-            <Button
-              startIcon={<ProposalIcon color="currentColor" width="24px" />}
+            <Text as="p" mb="16px">
+              {t('But a proposal that has received a lot of votes could be a key proposition.')}
+            </Text>
+            <StyleButton
+              startIcon={<WritingIcon color="currentColor" width="24px" />}
               as={Link}
               to="/voting/proposal/create"
             >
               {t('Make a Proposal')}
-            </Button>
+            </StyleButton>
           </Box>
         </Flex>
       </Container>

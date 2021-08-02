@@ -92,8 +92,6 @@
   "Connect to a wallet": "지갑 연결하기",
   "Learn how to connect": "지갑 연결방법 알아보기",
 
-
-
   "Farm": "파밍",
   "Staking": "예치",
   "Syrup Pool": "Syrup 풀",
@@ -1284,7 +1282,7 @@
   "5% fee = used to add liquidity": "5% 수수료 = 유동성을 추가하는 데 사용됨",
   "These travelers are the expedition teams that travel around the planet for the best swap.": "이 여행자들은 최고의 거래를 위해 여러 행성을 여행하는 탐사대입니다.",
   "They're exploring several planets to find the best APY. Did you find the best Mining Pool?": "이들은 최고의 APY를 찾기 위해 여러 행성들을 탐구합니다. 최고의 마이닝 풀을 찾았나요?",
-  "This is the basic concept of all decentralized trading methods, and the essence that enables the circulation of all materials.":"이는 모든 탈중앙화 거래의 원초적 개념이며, 이는 모든 원소들의 순환을 가능케 하는 필수 구성요소입니다.",
+  "This is the basic concept of all decentralized trading methods, and the essence that enables the circulation of all materials.": "이는 모든 탈중앙화 거래의 원초적 개념이며, 이는 모든 원소들의 순환을 가능케 하는 필수 구성요소입니다.",
   "This is a visible form of energy sources for all decentralized transactions. Fundamental energy materials converge, enabling the flow of decentralized finance.": "이는 모든 탈중앙화 거래의 에너지원들이 가시화된 형태입니다. 근본적인 에너지 물질들이 모여, 탈중앙화 금융의 흐름을 가능케합니다.",
   "The multiplier represents the amount of token rewards each farm gets.": "승수는 각 팜이 받는 토큰 리워드 액수를 나타냅니다.",
   "For example, if a 1x farm was getting 1 HD per block, a 40x farm would be getting 40 HD per block.": "예를 들어, 1x 팜이 블록당 1 HD을 얻는다면, 40x 팜은 블록당 40 HD을 얻게 됩니다.",
@@ -1293,6 +1291,9 @@
   "Get HD-WHT LP Tokens": "HD-WHT LP 토큰 준비하기",
   "Stake HD and WHT in the liquidity pool to get LP tokens.": "LP 토큰을 얻기 위해 유동성 풀에 HD 및 WHT를 예치합니다.",
   "After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent HD-WHT LP tokens will be returned to your wallet.": "IHO 세일이 종료된 후에, 구매에 성공한 프로젝트 토큰 및 사용되지 않은 HD-WHT 토큰이 여러분들의 지갑으로 전송됩니다.",
-  "Only approved HubDAO Collectibles can be used.":"오직 승인된 HubDAO 수집품만 사용이 가능합니다.",
-  "Warning: BONDLY has been compromised. Please remove liqudity until further notice.": "경고: BONDLY는 손상되었습니다. 추후 공지가 있을 때까지 유동성을 제거하세요."
+  "Only approved HubDAO Collectibles can be used.": "오직 승인된 HubDAO 수집품만 사용이 가능합니다.",
+  "Warning: BONDLY has been compromised. Please remove liqudity until further notice.": "경고: BONDLY는 손상되었습니다. 추후 공지가 있을 때까지 유동성을 제거하세요.",
+  "Do you have any suggestions?": "제안하시나요?",
+  "Voting is a good way to see what ideas others have and are thinking.The proposal succeeded in voting.Even so, it does not reflect immediately.": "투표는 다른사람들이 어떤 아이디어를 가지고 있고 생각하고 있는지 확인 하는 좋은방법입니다.",
+  "But a proposal that has received a lot of votes could be a key proposition.":"제안이 투표에 성공했다해도 바로 반영되는건 아닙니다. 하지만 많은 투표를 받은 제안은 핵심제안이 될수 있습니다."
 }

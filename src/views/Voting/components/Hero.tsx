@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, Heading, ProposalIcon } from '@pancakeswap-libs/uikit'
+import { Box, StyleButton, Flex, Heading, WritingIcon } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'hooks/useI18n'
@@ -26,13 +26,13 @@ const Hero = () => {
             <Heading as="h3" scale="lg" mb="16px">
               {t('Have your say in the future of the HubDao Ecosystem')}
             </Heading>
-            <Button
-              startIcon={<ProposalIcon color="currentColor" width="24px" />}
+            <StyleButton
+              startIcon={<WritingIcon color="currentColor" width="24px" />}
               as={Link}
               to="/voting/proposal/create"
             >
               {t('Make a Proposal')}
-            </Button>
+            </StyleButton>
           </Box>
           <DesktopImage src="/images/voting/voting-presents.png" width={361} height={214} />
         </Flex>
