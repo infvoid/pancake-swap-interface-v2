@@ -267,6 +267,11 @@ const PoolAllocations2 = () => {
 const GappedFlex = styled(Flex)`
   gap: 16px;
 `
+const FlexDirection = styled(Flex)`
+  @media screen and (max-width: 800px) {
+    text-align: center;
+  }
+`
 const StyleGappedFlex = styled(GappedFlex)`
   @media screen and (max-width: 800px) {
     flex-flow: column-reverse;
@@ -295,12 +300,12 @@ const HowToPlay: React.FC = () => {
   ]
   return (
     <Box width="100%">
-      <Flex flexDirection={['column', 'column', 'column', 'row']} alignItems="center">
-        <Flex mb="40px" alignItems="center" flexDirection="column">
+      <FlexDirection mb="40px" flexDirection={['column', 'column', 'column', 'row']} alignItems="center">
+        <Flex flexDirection="column">
           <Heading mb="24px" scale="xl" color="secondary">
             {t('How to Play')}
           </Heading>
-          <Text textAlign="center">
+          <Text>
             {t(
               'If the digits on your tickets match the winning numbers in the correct order, you win a portion of the prize pool.'
             )}
@@ -312,7 +317,7 @@ const HowToPlay: React.FC = () => {
             <StepCard key={step.label} step={step} />
           ))}
         </StepContainer>
-      </Flex>
+      </FlexDirection>
       <Divider />
       <GappedFlex flexDirection={['column', 'column', 'column', 'row']}>
         <Flex flex="2" flexDirection="column">
@@ -352,7 +357,7 @@ const HowToPlay: React.FC = () => {
         </Flex>
       </GappedFlex>
       <Divider />
-      <StyleGappedFlex flexDirection={['column', 'column', 'column', 'row']}>
+      <StyleGappedFlex alignItems="center" flexDirection={['column', 'column', 'column', 'row']}>
         <Flex flex="1" justifyContent="center">
           <PoolAllocations2 />
         </Flex>
