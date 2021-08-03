@@ -37,6 +37,12 @@ const PoolControls = styled(Flex)`
   }
 `
 
+const StyleText = styled(Text)`
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+`
+
 const SearchSortContainer = styled(Flex)`
   gap: 10px;
   justify-content: space-between;
@@ -52,15 +58,14 @@ const FlexStyle = styled(Flex)`
   align-items: center;
   flex-direction: row;
   ${Text} {
-    font-size: 14px;
     margin-right: 13px;
   }
 `
-const HeadingStyle = styled(Heading) <{ fontsize: string }>`
+const HeadingStyle = styled(Heading)<{ fontsize: string }>`
   font-size: ${({ fontsize }) => fontsize};
   color: #ffffff;
 `
-const PageHeaderV2Style = styled(PageHeaderV2) <{ isDark: any }>`
+const PageHeaderV2Style = styled(PageHeaderV2)<{ isDark: any }>`
   background: ${({ isDark }) => (isDark ? '#11122e' : '#1f1e47')};
 `
 
@@ -75,7 +80,7 @@ const Pools: React.FC = () => {
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [ viewMode ] = useState("CARD")
+  const [viewMode] = useState('CARD')
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
@@ -167,12 +172,12 @@ const Pools: React.FC = () => {
             }
             return pool.isAutoVault
               ? getCakeVaultEarnings(
-                account,
-                cakeAtLastUserAction,
-                userShares,
-                pricePerFullShare,
-                pool.earningTokenPrice
-              ).autoUsdToDisplay
+                  account,
+                  cakeAtLastUserAction,
+                  userShares,
+                  pricePerFullShare,
+                  pool.earningTokenPrice
+                ).autoUsdToDisplay
               : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
           },
           'desc'
@@ -277,10 +282,10 @@ const Pools: React.FC = () => {
                 />
               </ControlStretch>
             </FlexStyle>
-            <FlexStyle flexDirection="column" width="50%">
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+            <FlexStyle flexDirection="column" width="50%" ml="16px">
+              <StyleText fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Search')}
-              </Text>
+              </StyleText>
               <ControlStretch>
                 <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
               </ControlStretch>

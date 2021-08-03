@@ -27,7 +27,7 @@ const Choices: React.FC<ChoicesProps> = ({ choices, onChange }) => {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader variant="voting">
         <Heading as="h3" scale="md">
           {t('Choices')}
         </Heading>
