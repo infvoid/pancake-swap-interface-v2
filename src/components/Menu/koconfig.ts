@@ -30,7 +30,7 @@ const config: MenuEntry[] = [
     items: [
       {
         label: '이자농사',
-        href: '/Farms',
+        href: '/farms',
       },
       {
         label: '커뮤니티 풀',

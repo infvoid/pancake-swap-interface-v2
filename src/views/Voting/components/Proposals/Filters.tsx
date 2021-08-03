@@ -12,7 +12,8 @@ interface FiltersProps {
 
 const StyledFilters = styled(Flex).attrs({ alignItems: 'center' })`
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  padding: 16px 24px;
+  padding: 16px 10px;
+  justify-content: space-between;
 `
 
 const FilterLabel = styled.label`
@@ -20,6 +21,12 @@ const FilterLabel = styled.label`
   cursor: pointer;
   display: flex;
   margin-right: 16px;
+`
+
+const StyleText = styled(Text)`
+  @media screen and (max-width: 800px) {
+    font-size: 12px;
+  }
 `
 
 const options = [
@@ -48,7 +55,7 @@ const Filters: React.FC<FiltersProps> = ({ filterState, onFilterChange, isLoadin
               onChange={handleChange}
               disabled={isLoading}
             />
-            <Text ml="8px">{t(label)}</Text>
+            <StyleText ml="8px">{t(label)}</StyleText>
           </FilterLabel>
         )
       })}
