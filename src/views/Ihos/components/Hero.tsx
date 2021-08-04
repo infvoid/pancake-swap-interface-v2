@@ -14,7 +14,7 @@ const getGradient = (isDark: boolean) => {
 
 const StyledHero = styled.div`
   /* background: ${({ theme }) => getGradient(theme.isDark)}; */
-  background-image: linear-gradient(272deg, #11122e 0%, #2c3053 32%, #1e1d47 86%);;
+  background-image: linear-gradient(272deg, #11122e 0%, #2c3053 32%, #1e1d47 86%);
   /* padding-bottom: 40px; */
   /* padding-top: 40px; */
   > div {
@@ -26,6 +26,7 @@ const StyledHero = styled.div`
     }
     @media screen and (max-width: 1024px) {
       background-position: right 30px;
+      background-image: none;
     }
     padding-bottom: 56px;
     /* padding-bottom: 40px; */

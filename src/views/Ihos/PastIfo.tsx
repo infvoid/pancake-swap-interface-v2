@@ -15,7 +15,7 @@ const PastIfo = () => {
           <IfoCardV1Data key={ifo.id} ifo={ifo} />
         ) : (
           <IfoCardV2Data key={ifo.id} ifo={ifo} isInitiallyVisible={false} />
-        ),
+        )
       )}
     </IfoLayout>
   )

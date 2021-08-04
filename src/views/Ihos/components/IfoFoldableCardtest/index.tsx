@@ -94,6 +94,12 @@ const Header = styled(CardHeader)<{ ifoId: string }>`
   background-position: center;
   background-image: ${({ ifoId }) => `url('/images/ihos/${ifoId}-bg.svg')`}; */
   /* background-image: linear-gradient(307deg, #11124d 19%, rgba(55, 60, 99, 0.88) 103%, rgba(30, 29, 71, 0) 100%); */
+  @media screen and (max-width: 800px) {
+    padding: 5px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+  }
 `
 
 const FoldableContent = styled.div<{ isVisible: boolean; isActive: boolean }>`
