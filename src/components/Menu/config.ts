@@ -30,7 +30,7 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Yield Farming',
-        href: '/Farms',
+        href: '/farms',
       },
       {
         label: 'Community Pool',

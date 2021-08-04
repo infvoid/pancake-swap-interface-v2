@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { ifosConfig, ifostestConfig } from 'config/constants'
 import useGetPublicIfoV2Data from 'views/Ihos/hooks/v2/useGetPublicIfoData'
 import useGetWalletIfoV2Data from 'views/Ihos/hooks/v2/useGetWalletIfoData'
@@ -13,6 +14,13 @@ import IfoSteps from './components/IfoSteps'
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 const activeIfotest = ifostestConfig.find((ifo) => ifo.isActive)
 
+const StyleIfoLayout = styled(IfoLayout)`
+  @media screen and (max-width: 800px) {
+    padding: 0;
+    padding-bottom: 40px;
+  }
+`
+
 const Ifo = () => {
   // const publicIfoData = useGetPublicIfoV2Data(activeIfo)
   const publicIfotestData = useGetPublicIfoV2Data(activeIfotest)
@@ -20,7 +28,7 @@ const Ifo = () => {
   const walletIfotestData = useGetWalletIfoV2Data(activeIfotest)
 
   return (
-    <IfoLayout>
+    <StyleIfoLayout>
       {/* <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData} isInitiallyVisible /> */}
       <IfoFoldableCardtest
         ifo={activeIfotest}
@@ -29,7 +37,7 @@ const Ifo = () => {
         isInitiallyVisible
       />
       <IfoSteps ifo={activeIfo} walletIfoData={walletIfoData} />
-    </IfoLayout>
+    </StyleIfoLayout>
   )
 }
 

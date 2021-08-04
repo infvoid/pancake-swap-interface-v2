@@ -9,6 +9,10 @@ const StyledInput = styled(Input)`
   border-radius: 16px;
   margin-left: auto;
   border-radius: 2px;
+  @media screen and (max-width: 800px) {
+    padding: 0 5px;
+    font-size: 12px;
+  }
   border: solid 1px #444444;
   background-color: ${({ theme }) => (!theme.isDark ? '#ffffff' : '#000000')};
 `
@@ -35,7 +39,7 @@ const SearchInput: React.FC<Props> = ({ onChange: onChangeCallback, placeholder 
 
   const debouncedOnChange = useMemo(
     () => debounce((e: React.ChangeEvent<HTMLInputElement>) => onChangeCallback(e), 500),
-    [onChangeCallback],
+    [onChangeCallback]
   )
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

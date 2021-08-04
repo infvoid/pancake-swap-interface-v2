@@ -209,7 +209,7 @@ const CreateProposal = () => {
           </Box>
           <Box>
             <Card>
-              <CardHeader>
+              <CardHeader variant="voting">
                 <Heading as="h3" scale="md">
                   {t('Actions')}
                 </Heading>

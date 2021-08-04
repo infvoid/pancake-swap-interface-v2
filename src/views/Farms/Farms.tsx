@@ -91,6 +91,12 @@ const ViewControls = styled.div`
     }
   }
 `
+const StyleText = styled(Text)`
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+`
+
 const PageHeaderV2Style = styled(PageHeaderV2)<{ isDark?: any }>`
   padding-top: 16px;
   height: 193px;
@@ -415,7 +421,7 @@ const Farms: React.FC = () => {
               />
             </LabelWrapper>
             <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">{t('Search')}</Text>
+              <StyleText textTransform="uppercase">{t('Search')}</StyleText>
               <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
             </LabelWrapper>
           </FilterContainer>

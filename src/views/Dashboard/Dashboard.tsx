@@ -257,6 +257,7 @@ const Pairs = styled.div`
             width: 100%;
             overflow: hidden;
             font-size: 14px;
+            padding: 0 10px;
           }
           height: 32px;
           line-height: 32px;
@@ -582,7 +583,7 @@ const Dashboard: React.FC = () => {
         <BlockItem>
           <Pairs>
             <div className="title">
-              <div className="font">{t("Pairs")}</div>
+              <div className="font">{t('Pairs')}</div>
               <div className="right">2021-05-19 오후 10:00 기준</div>
             </div>
             <div className="table">

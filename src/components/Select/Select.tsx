@@ -14,6 +14,11 @@ const DropDownHeader = styled.div`
   /* border-radius: 16px; */
   /* background: ${({ theme }) => theme.colors.input}; */
   transition: border-radius 0.15s;
+  @media screen and (max-width: 800px) {
+    ${Text} {
+      font-size: 12px;
+    }
+  }
 `
 
 const DropDownListContainer = styled.div`
@@ -28,6 +33,7 @@ const DropDownListContainer = styled.div`
   transform-origin: top;
   opacity: 0;
   width: 100%;
+  z-index: 99;
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 168px;
   }
