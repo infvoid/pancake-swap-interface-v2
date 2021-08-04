@@ -1,7 +1,6 @@
-import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT } from 'config'
 import { ethers } from 'ethers'
-import { BIG_TEN, BIG_ZERO } from './bigNumber'
+import { BIG_ZERO } from './bigNumber'
 
 export const approve = async (lpContract, masterChefContract, account) => {
   return lpContract.methods
