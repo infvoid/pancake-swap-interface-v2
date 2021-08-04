@@ -108,7 +108,7 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://www.htokens.finance',
-    logoURI: 'https://mdex.co/token-icons/heco/0xe499ef4616993730ced0f31fa2703b92b50bb536.png',
+    logoURI: 'https://info.hubdao.io/coin/0xe499ef4616993730ced0f31fa2703b92b50bb536.png',
   },
   bkc: {
     symbol: 'BKC',
@@ -128,7 +128,7 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://booster.farm',
-    logoURI: 'https://mdex.co/token-icons/heco/0xff96dccf2763d512b6038dc60b7e96d1a9142507.png',
+    logoURI: 'https://info.hubdao.io/coin/0xff96dccf2763d512b6038dc60b7e96d1a9142507.png',
   },
   mdx: {
     symbol: 'MDX',
@@ -168,7 +168,7 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://www.htokens.finance/en-us',
-    logoURI: 'https://mdex.co/token-icons/heco/0x66a79d23e58475d2738179ca52cd0b41d73f0bea.png',
+    logoURI: 'https://s2.coinmarketcap.com/static/img/coins/64x64/6941.png',
   },
 }
 
