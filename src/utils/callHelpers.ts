@@ -70,7 +70,6 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
 export const sousUnstake = async (sousChefContract, amount, decimals, account) => {
   return sousChefContract.methods
     .withdraw(ethers.utils.parseUnits(amount, decimals))
-    .withdraw(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
     .send({ from: account, gas: DEFAULT_GAS_LIMIT })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
