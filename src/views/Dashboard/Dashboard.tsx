@@ -604,7 +604,7 @@ const Dashboard: React.FC = () => {
                         <div className="Add">Add Liquidity</div>
                       </Link>
                       <Link
-                        to={`/swap?outputCurrency=${item.farm.quoteToken.address[128]}&inputCurrency${item.farm.token.address[128]}`}
+                        to={`/swap?outputCurrency=${item.farm.quoteToken.address[128]}&inputCurrency=${item.farm.token.address[128]}`}
                       >
                         <div className="Trade">Trade</div>
                       </Link>
