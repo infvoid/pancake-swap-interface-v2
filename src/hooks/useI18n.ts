@@ -25,7 +25,6 @@ const useI18n = () => {
 }
 export const useTranslation = () => {
   const { translations } = useContext(TranslationsContext)
-
   return {
     t: useCallback(
       (fallback: string, key?: any) => {

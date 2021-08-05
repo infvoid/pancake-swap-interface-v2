@@ -552,11 +552,11 @@ const Dashboard: React.FC = () => {
         </svg>
         <LogoIcon className="app-svg" width="50px" />
       </Header>
-      <Content>DECENTRALIZED FINANCIAL ECOSYSTEM BASED ON GOVERNANCE. </Content>
+      <Content>{t('DECENTRALIZED FINANCIAL ECOSYSTEM BASED ON GOVERNANCE.')} </Content>
       <Block>
         <BlockItem>
           <Earn>
-            <div className="title">Earn up to </div>
+            <div className="title">{t('Earn up to')} </div>
             <div className="block">
               <div className="apy">1993% APY</div>
               <div className="Stake">In Stake HUB {'>'}</div>
@@ -564,14 +564,14 @@ const Dashboard: React.FC = () => {
           </Earn>
           <Price>
             <div className="left">
-              <p>HD Price : $10</p>
-              <p>Clrculating supply : 1.392.391 HD</p>
-              <p>Remaining Token to be mined : 19,203,193 </p>
-              <p>Total Burned HD : 1,402,301 HD</p>
+              <p>{t('HD Price')} : $10</p>
+              <p>{t('Clrculating supply')} : 1.392.391 HD</p>
+              <p>{t('Remaining Token to be mined')} : 19,203,193 </p>
+              <p>{t('Total Burned HD')} : 1,402,301 HD</p>
             </div>
             <div className="right">
-              <p>Volume : $104,203,293</p>
-              <p>Fee : $291,392</p>
+              <p>{t('Volume')} : $104,203,293</p>
+              <p>{t('Fee')} : $291,392</p>
             </div>
           </Price>
         </BlockItem>
@@ -589,10 +589,10 @@ const Dashboard: React.FC = () => {
             <div className="table">
               <div className="table-body">
                 <div className="head">
-                  <div className="Stake">Stake</div>
-                  <div className="APY">APR</div>
-                  <div className="Action">Action</div>
-                  <div className="Tokens">Tokens</div>
+                  <div className="Stake">{t('Stake')}</div>
+                  <div className="APY">{t('APR')}</div>
+                  <div className="Action">{t('Action')}</div>
+                  <div className="Tokens">{t('Tokens')}</div>
                 </div>
 
                 {rowData.map((item) => (
@@ -601,12 +601,12 @@ const Dashboard: React.FC = () => {
                     <div>{`${item.apr?.value}%`}</div>
                     <div className="button-info">
                       <Link to={`/add/${item.farm.quoteToken.address[128]}/${item.farm.token.address[128]}`}>
-                        <div className="Add">Add Liquidity</div>
+                        <div className="Add">{t('Add Liquidity')}</div>
                       </Link>
                       <Link
                         to={`/swap?outputCurrency=${item.farm.quoteToken.address[128]}&inputCurrency=${item.farm.token.address[128]}`}
                       >
-                        <div className="Trade">Trade</div>
+                        <div className="Trade">{t('Trade')}</div>
                       </Link>
                     </div>
                     <div className="curr">

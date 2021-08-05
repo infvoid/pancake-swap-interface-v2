@@ -75,11 +75,15 @@ export default function App() {
 
   useEffect(() => {
     const storedLangCode = localStorage.getItem(CACHE_KEY)
+    if (storedLangCode == null) {
+      localStorage.setItem(CACHE_KEY, '')
+    }
     if (storedLangCode) {
       const storedLang = getStoredLang(storedLangCode)
       setSelectedLanguage(storedLang)
     } else {
       setSelectedLanguage(EN)
+      localStorage.setItem(CACHE_KEY, 'en')
     }
   }, [])
 

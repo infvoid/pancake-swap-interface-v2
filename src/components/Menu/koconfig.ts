@@ -47,11 +47,11 @@ const config: MenuEntry[] = [
         href: '/IHO',
       },
       {
-        label: 'Leaderboard',
+        label: '리더보드',
         href: '/teams',
       },
       {
-        label: 'Your Profile',
+        label: '내 프로필',
         href: '/profile',
       },
     ],

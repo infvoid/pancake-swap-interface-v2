@@ -46,7 +46,6 @@ const AvatarWrapper = styled.div`
 
 const EditProfileAvatar: React.FC<ProfileAvatarProps> = ({ profile }) => {
   const [onEditProfileModal] = useModal(<EditProfileModal />, false)
-
   return (
     <StyledEditProfileAvatar onClick={onEditProfileModal}>
       <AvatarWrapper>

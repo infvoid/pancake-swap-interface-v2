@@ -105,7 +105,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ rank, team }) => {
         <Info>
           <Flex alignItems="center" mb="16px">
             <MobileAvatar>{avatar}</MobileAvatar>
-            <TeamName>{team.name}</TeamName>
+            <TeamName>{t(team.name)}</TeamName>
           </Flex>
           <Text as="p" color="textSubtle" pr="24px" mb="16px">
             {t(team.description)}
