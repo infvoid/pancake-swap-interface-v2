@@ -29,7 +29,7 @@ export const fetchWalletNfts = createAsyncThunk<NftSourceItem[], string>(
         try {
           const tokenId = await contract.methods.tokenOfOwnerByIndex(account, index).call()
           const walletNft = await getNftByTokenId(address, tokenId)
-          return [Number(tokenId), walletNft.identifier]
+          return [Number(tokenId), walletNft?.identifier]
         } catch (error) {
           console.error('getTokenIdAndData', error)
           return null

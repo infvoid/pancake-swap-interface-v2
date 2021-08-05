@@ -1,8 +1,10 @@
 import { useContext } from 'react'
 import { TranslationsContext } from 'hooks/TranslationsContext'
+import { KO } from '../constants/localisation/languageCodes'
+
 
 const variableRegex = /%(.*?)%/
-
+const CACHE_KEY = 'hubdaoSwapLanguage'
 const replaceDynamicString = (foundTranslation: string, key) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const stringToReplace = variableRegex.exec(foundTranslation)![0]
@@ -20,6 +22,10 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
   if (translations === null || translations.length === 0) {
     if(fallback.includes('%') && key !== undefined){
       return replaceDynamicString(fallback, key)
+    }
+    const storedLangCode = localStorage.getItem(CACHE_KEY)
+    if(storedLangCode !== "en"){
+      return KO.src[fallback]
     }
     return fallback
   }
