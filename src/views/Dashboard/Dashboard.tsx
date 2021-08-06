@@ -131,7 +131,8 @@ const Price = styled.div`
     flex-direction: column;
   }
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => (!theme.isDark ? '#3A3B54' : '#ffffff')};
+  color: ${({ theme }) => (!theme.isDark ? '#fff' : '#000')};
   display: flex;
   justify-content: space-between;
   box-shadow: 3px 4px 6px 0 ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
@@ -148,7 +149,6 @@ const Price = styled.div`
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #000;
   }
   .left {
   }
@@ -222,8 +222,8 @@ const Pairs = styled.div`
         padding: 9px 0px 9px 12px;
       }
       border-radius: 6px;
-      background-color: #f5f5f5;
-      color: ${({ theme }) => (theme.isDark ? '#000000' : '#000000')};
+      background-color: ${({ theme }) => (theme.isDark ? 'rgb(1, 0, 51);' : '#f5f5f5')};
+      color: ${({ theme }) => (theme.isDark ? '#fff' : '#000000')};
       div {
         flex: 1;
         @media screen and (max-width: 1024px) {
@@ -291,6 +291,14 @@ const Pairs = styled.div`
           object-fit: contain;
         }
       }
+    }
+    .table-body-item {
+      display: none;
+    }
+    .table-body-item.item-0,
+    .table-body-item.item-1,
+    .table-body-item.item-2 {
+      display: flex;
     }
 
     .head {
@@ -559,7 +567,11 @@ const Dashboard: React.FC = () => {
             <div className="title">{t('Earn up to')} </div>
             <div className="block">
               <div className="apy">1993% APY</div>
-              <div className="Stake">In Stake HUB {'>'}</div>
+              <div className="Stake">
+                <Link to="/farms">
+                  {t('In Stake HUB')} {'>'}
+                </Link>
+              </div>
             </div>
           </Earn>
           <Price>
@@ -584,7 +596,9 @@ const Dashboard: React.FC = () => {
           <Pairs>
             <div className="title">
               <div className="font">{t('Pairs')}</div>
-              <div className="right">2021-05-19 오후 10:00 기준</div>
+              <div className="right">
+                <Link to="/farms">{t('More')}</Link>
+              </div>
             </div>
             <div className="table">
               <div className="table-body">
@@ -595,8 +609,8 @@ const Dashboard: React.FC = () => {
                   <div className="Tokens">{t('Tokens')}</div>
                 </div>
 
-                {rowData.map((item) => (
-                  <div className="table-body-item" key={item.farm.label}>
+                {rowData.map((item, index) => (
+                  <div className={`table-body-item item-${index}`} key={item.farm.label}>
                     <div className="mytitle">{item.farm.label}</div>
                     <div>{`${item.apr?.value}%`}</div>
                     <div className="button-info">

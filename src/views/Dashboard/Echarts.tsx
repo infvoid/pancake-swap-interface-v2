@@ -40,20 +40,20 @@ const Echarts = () => {
           top: '10px',
           textStyle: {
             fontSize: '18px',
-            fontWeight: 300,
+            fontWeight: 'bold',
             color: '#2f303f',
           },
         },
-        {
-          text: '2021-05-19 오후 10:00 기준',
-          right: '1%',
-          top: '10px',
-          textStyle: {
-            fontSize: '14px',
-            fontWeight: 300,
-            color: '#727272',
-          },
-        },
+        // {
+        //   text: '2021-05-19 오후 10:00 기준',
+        //   right: '1%',
+        //   top: '10px',
+        //   textStyle: {
+        //     fontSize: '14px',
+        //     fontWeight: 300,
+        //     color: '#727272',
+        //   },
+        // },
       ],
       // 高度
       grid: {

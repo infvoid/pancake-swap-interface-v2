@@ -275,7 +275,7 @@
   "Liquidity": "유동성",
   "Overview": "개요",
   "Token": "토큰",
-  "Pairs": "쌍",
+  "Pairs": "페어",
   "Accounts": "계정",
   "Stake LP tokens to earn HD": "HD을 얻으려면 LP 토큰 예치",
   "Active": "활성",
@@ -1313,5 +1313,6 @@
   "Volume":"용량",
   "Fee":"수수료",
   "APR":"연이율",
-  "Action":"액션!"
+  "Action":"액션!",
+  "In Stake HUB":"스테이킹 허브"
 }
