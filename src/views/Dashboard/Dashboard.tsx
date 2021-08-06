@@ -131,8 +131,8 @@ const Price = styled.div`
     flex-direction: column;
   }
   border-radius: 8px;
-  background-color: ${({ theme }) => (!theme.isDark ? '#3A3B54' : '#ffffff')};
-  color: ${({ theme }) => (!theme.isDark ? '#fff' : '#000')};
+  background-color: ${({ theme }) => (theme.isDark ? '#3A3B54' : '#ffffff')};
+  color: ${({ theme }) => (theme.isDark ? '#fff' : '#000')};
   display: flex;
   justify-content: space-between;
   box-shadow: 3px 4px 6px 0 ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
