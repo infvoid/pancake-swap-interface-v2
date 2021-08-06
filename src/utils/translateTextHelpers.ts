@@ -25,7 +25,7 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
     }
     const storedLangCode = localStorage.getItem(CACHE_KEY)
     if(storedLangCode !== "en"){
-      return KO.src[fallback]
+      return KO.src[fallback] || fallback
     }
     return fallback
   }
