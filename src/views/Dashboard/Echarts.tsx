@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 import styled from 'styled-components'
+import useTheme from 'hooks/useTheme'
 import rawData from './rawData.json'
 
 const Echart = styled.div`
@@ -15,6 +16,7 @@ const Echarts = () => {
   const data = rawData.data.map((entry) => {
     return [entry.time, entry.windSpeed, entry.R, entry.waveHeight]
   })
+  const { isDark } = useTheme()
   const dims = {
     time: 0,
     windSpeed: 1,
@@ -41,7 +43,7 @@ const Echarts = () => {
           textStyle: {
             fontSize: '18px',
             fontWeight: 'bold',
-            color: '#2f303f',
+            color: isDark ? '#fff' : '#2f303f',
           },
         },
         // {

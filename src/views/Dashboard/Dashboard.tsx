@@ -167,7 +167,7 @@ const Tlv = styled.div`
   border-radius: 8px;
   border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
   box-shadow: 3px 4px 6px 0 ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
-  background-color: #ffffff;
+  background-color: ${({ theme }) => (!theme.isDark ? '#fff' : '#444667')};
 `
 const Pairs = styled.div`
   width: 100%;
@@ -178,8 +178,8 @@ const Pairs = styled.div`
   border-radius: 8px;
   box-shadow: 3px 4px 6px 0 ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
   border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
-  background-color: #ffffff;
-  color: #000;
+  background-color: ${({ theme }) => (!theme.isDark ? '#fff' : '#444667')};
+  color: ${({ theme }) => (theme.isDark ? '#fff' : '#000')};
   .title {
     display: flex;
     justify-content: space-between;
