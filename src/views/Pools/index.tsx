@@ -210,7 +210,6 @@ const Pools: React.FC = () => {
 
     return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
-  console.log(poolsToShow())
   const cardLayout = (
     <CardLayout>
       {poolsToShow().map((pool) =>

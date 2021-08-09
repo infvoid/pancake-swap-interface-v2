@@ -24,12 +24,12 @@ const Container = styled(Flex)`
   }
 `
 
-const AchievementFlex = styled(Flex) <{ isFinished: boolean }>`
+const AchievementFlex = styled(Flex)<{ isFinished: boolean }>`
   ${({ isFinished }) => (isFinished ? 'filter: grayscale(100%)' : '')};
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  margin-top: 32px;
+  font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 0;
   }
@@ -69,7 +69,7 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
           <Text color="textSubtle" mr="5px">
             {publicIfoData.numberPoints}
           </Text>
-          <StyledLinkExternal href={ifo.articleUrl}>
+          <StyledLinkExternal color="textSubtle" href={ifo.articleUrl}>
             {t('Learn more about %title%', { title: campaignTitle })}
           </StyledLinkExternal>
         </Flex>

@@ -41,6 +41,7 @@ const ControlContainer = styled.div`
     flex-wrap: wrap;
     padding: 16px 32px;
     margin-bottom: 0;
+    gap: 10px;
   }
 `
 

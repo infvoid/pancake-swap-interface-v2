@@ -24,12 +24,12 @@ const Container = styled(Flex)`
   }
 `
 
-const AchievementFlex = styled(Flex) <{ isFinished: boolean }>`
+const AchievementFlex = styled(Flex)<{ isFinished: boolean }>`
   ${({ isFinished }) => (isFinished ? 'filter: grayscale(100%)' : '')};
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  margin-top: 32px;
+  font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 0;
   }
@@ -50,7 +50,7 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
             {`${t('Achievement')}:`}
           </Text>
           <Flex>
-            <Text bold mr="8px" color="#010033">
+            <Text bold mr="8px" color="textSubtle">
               {t('IHO Shopper: %title%', { title: campaignTitle })}
             </Text>
           </Flex>
@@ -63,13 +63,13 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
           )}
         </Flex>
       </AchievementFlex>
-      <Flex alignItems="flex-end" flexDirection="column">
+      <Flex alignItems="flex-end" flexDirection="column" mt="10px">
         <Flex alignItems="center" mr="8px" mb="8px">
           <PrizeIcon color="textSubtle" width="16px" mr="4px" />
           <Text color="textSubtle" mr="5px">
             {publicIfoData.numberPoints}
           </Text>
-          <StyledLinkExternal href={ifo.articleUrl}>
+          <StyledLinkExternal color="textSubtle" href={ifo.articleUrl}>
             {t('Learn more about %title%', { title: campaignTitle })}
           </StyledLinkExternal>
         </Flex>
