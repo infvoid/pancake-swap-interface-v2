@@ -3,9 +3,9 @@ import { useLocation, Link } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { ChainId } from '@pancakeswap/sdk'
 import styled from 'styled-components'
-import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
 import { useTranslation } from 'hooks/useI18n'
-import { LogoIcon } from '@pancakeswap-libs/uikit'
+import { LogoIcon, Flex } from '@pancakeswap-libs/uikit'
+import { usePollFarmsData, usePriceCakeBusd, useFarms } from 'state/hooks'
 import { Farm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
@@ -16,6 +16,7 @@ import useTheme from 'hooks/useTheme'
 import { FarmWithStakedValue } from '../Farms/components/FarmCard/FarmCard'
 import { RowProps } from '../Farms/components/FarmTable/Row'
 import Echarts from './Echarts'
+import Apy from './apy'
 
 const Header = styled.div`
   padding-top: 50px;
@@ -488,7 +489,11 @@ const Dashboard: React.FC = () => {
     return row
   })
 
-  // console.log(rowData)
+  const HDPrice = rowData[0]?.apr?.cakePrice.toNumber().toLocaleString(undefined, {
+    minimumFractionDigits: 3,
+    maximumFractionDigits: 3,
+  })
+
   return (
     <>
       <Header>
@@ -566,7 +571,12 @@ const Dashboard: React.FC = () => {
           <Earn>
             <div className="title">{t('Earn up to')} </div>
             <div className="block">
-              <div className="apy">1993% APY</div>
+              <div className="apy">
+                <Flex alignItems="center">
+                  <Apy />
+                  APY
+                </Flex>
+              </div>
               <div className="Stake">
                 <Link to="/farms">
                   {t('In Stake HUB')} {'>'}
@@ -576,7 +586,9 @@ const Dashboard: React.FC = () => {
           </Earn>
           <Price>
             <div className="left">
-              <p>{t('HD Price')} : $10</p>
+              <p>
+                {t('HD Price')} : ${HDPrice}
+              </p>
               <p>{t('Clrculating supply')} : 1.392.391 HD</p>
               <p>{t('Remaining Token to be mined')} : 19,203,193 </p>
               <p>{t('Total Burned HD')} : 1,402,301 HD</p>
