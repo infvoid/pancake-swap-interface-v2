@@ -3,6 +3,7 @@ const tokens = {
     symbol: 'HT',
     projectLink: 'https://hecoinfo.com',
     logoURI: '/images/coins/ht.png',
+    decimals: 18,
   },
   wbnb: {
     symbol: 'WHT',
@@ -39,6 +40,7 @@ const tokens = {
     symbol: 'HT',
     projectLink: 'https://hecoinfo.com',
     logoURI: '/images/coins/ht.png',
+    decimals: 18,
   },
   wht: {
     symbol: 'WHT',
