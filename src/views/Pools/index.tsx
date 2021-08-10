@@ -58,7 +58,7 @@ const FlexStyle = styled(Flex)`
   align-items: center;
   flex-direction: row;
   ${Text} {
-    margin-right: 13px;
+    margin-right: 5px;
   }
 `
 const HeadingStyle = styled(Heading)<{ fontsize: string }>`

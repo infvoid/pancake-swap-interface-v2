@@ -73,6 +73,7 @@ const Earn = styled.div`
   }
   height: 164px;
   padding: 24px 26px 42px 30px;
+  flex: 1;
   border-radius: 8px;
   background: linear-gradient(to left, #444667 12%, #2f303f 43%);
   border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : 'rgba(2, 1, 29, 0.58)')};
@@ -88,11 +89,13 @@ const Earn = styled.div`
   }
   .block {
     margin-top: 9px;
+    justify-content: space-between;
     @media screen and (max-width: 1024px) {
+      justify-content: flex-end;
       margin-top: 40px;
+      flex-wrap: wrap;
     }
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
     .apy {
       font-family: NotoSansCJKkr;
@@ -221,6 +224,9 @@ const Pairs = styled.div`
       padding: 9px 112px 9px 12px;
       @media screen and (max-width: 1024px) {
         padding: 9px 0px 9px 12px;
+      }
+      @media screen and (max-width: 852px) {
+        padding: 0px 5px;
       }
       border-radius: 6px;
       background-color: ${({ theme }) => (theme.isDark ? 'rgb(1, 0, 51);' : '#f5f5f5')};

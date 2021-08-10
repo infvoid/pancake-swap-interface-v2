@@ -60,7 +60,7 @@ const LabelWrapper = styled.div`
   align-items: center;
   > ${Text} {
     font-size: 12px;
-    margin-right: 13px;
+    margin-right: 4px;
   }
 `
 
@@ -69,6 +69,7 @@ const FilterContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 8px 0px;
+  word-break: break-all;
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
     padding: 0;

@@ -14,7 +14,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
 
   return (
     <Balance
-      fontSize="16px"
+      fontSize="23px"
       color="#fff"
       isDisabled={isFinished}
       value={earningsPercentageToDisplay}
