@@ -3,7 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 import styled from 'styled-components'
 import useTheme from 'hooks/useTheme'
 import rawData from './rawData.json'
-import { Tlv } from './tlv'
+import { Tvl } from './tvl'
 
 const Echart = styled.div`
   width: 100%;
@@ -38,7 +38,7 @@ const Echarts = () => {
       // },
       title: [
         {
-          text: `TLV ${Tlv()}`,
+          text: `TLV $${Tvl()}`,
           left: '1%',
           top: '10px',
           textStyle: {

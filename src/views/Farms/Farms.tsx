@@ -258,7 +258,6 @@ const Farms: React.FC = () => {
     stakedOnlyFarms,
     numberOfFarmsVisible,
   ])
-  console.log(farmsStakedMemoized)
   useEffect(() => {
     const showMoreFarms = (entries) => {
       const [entry] = entries

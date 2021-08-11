@@ -12,7 +12,7 @@ import { FarmWithStakedValue } from '../Farms/components/FarmCard/FarmCard'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
-export const Tlv = () => {
+export const Tvl = () => {
   const { pathname } = useLocation()
   const { data: farmsLP } = useFarms()
   const cakePrice = usePriceCakeBusd()
@@ -115,10 +115,8 @@ export const Tlv = () => {
     stakedOnlyFarms,
     numberOfFarmsVisible,
   ])
-  console.log(farmsStakedMemoized)
   let count = 0
   farmsStakedMemoized.forEach((item) => {
-    console.log(item)
     count += Number(item.liquidity)
   })
   return count.toLocaleString(undefined, { maximumFractionDigits: 3 })
