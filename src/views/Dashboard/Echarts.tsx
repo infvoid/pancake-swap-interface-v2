@@ -139,6 +139,11 @@ const Echarts = () => {
               type: 'dashed',
             },
           },
+          axisLabel: {
+            formatter: (value) => {
+              return `$${value}`
+            },
+          },
         },
       ],
 
