@@ -78,7 +78,7 @@ const Echarts = () => {
     return {
       title: [
         {
-          text: `TLV $${tvl}`,
+          text: `TVL $${tvl}`,
           left: '1%',
           top: '10px',
           textStyle: {
