@@ -69,7 +69,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
       behavior: 'smooth',
     })
   }
-
   return (
     <Container>
       <TableContainer>
