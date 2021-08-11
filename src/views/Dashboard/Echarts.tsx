@@ -5,7 +5,6 @@ import { getUnixTime, startOfDay, subDays, format } from 'date-fns'
 import ReactEcharts from 'echarts-for-react'
 import styled from 'styled-components'
 import useTheme from 'hooks/useTheme'
-import rawData from './rawData.json'
 import { useTvl } from './tvl'
 
 const Echart = styled.div`
@@ -17,34 +16,33 @@ const Echart = styled.div`
 `
 
 const Echarts = () => {
-  const [ data, setData ] = useState([])
+  const [data, setData] = useState([])
 
   const { isDark } = useTheme()
   const tvl = useTvl()
 
-  const dims = useMemo(() => ({
-    time: 0,
-    windSpeed: 1,
-    R: 2,
-    waveHeight: 3,
-    weatherIcon: 2,
-    minTemp: 3,
-    maxTemp: 4,
-  }), [])
+  const dims = useMemo(
+    () => ({
+      time: 0,
+      windSpeed: 1,
+      R: 2,
+      waveHeight: 3,
+      weatherIcon: 2,
+      minTemp: 3,
+      maxTemp: 4,
+    }),
+    []
+  )
 
   useEffect(() => {
-    const timestamp = getUnixTime(subDays(startOfDay(new Date), 7)).toString()
+    const timestamp = getUnixTime(subDays(startOfDay(new Date()), 7)).toString()
 
     async function fetchGraph() {
       const response = await request(
         'https://n5.hg.network/subgraphs/name/hubfarms/heco',
         gql`
           query getPoolHistories($timestamp: String!) {
-            poolHistories(
-              orderBy: "timestamp"
-              orderDirection: asc
-              where: { timestamp_gte: $timestamp }
-            ) {
+            poolHistories(orderBy: "timestamp", orderDirection: asc, where: { timestamp_gte: $timestamp }) {
               pool {
                 id
                 pair
@@ -69,15 +67,12 @@ const Echarts = () => {
         }, {})
       )
 
-      const result = histories.map(([key, val]) => [ key, '', '', val.div(1e12).toFixed(2) ])
-      setData([ ...result ])
-
-      console.log('真实数据: ', result);
+      const result = histories.map(([key, val]) => [key, val.div(1e12).toFixed(2)])
+      setData([...result])
     }
 
     fetchGraph()
   }, [setData])
-
   // 配置对象
   const option = useMemo(() => {
     return {
@@ -97,14 +92,19 @@ const Echarts = () => {
         top: 50,
         bottom: 40,
         left: 40,
-        right: 40,
+        right: 80,
       },
       xAxis: {
         type: 'time',
-        maxInterval: 3600 * 1000 * 24 * 30,
+        // maxInterval: 3600 * 1000 * 13,
         splitLine: {
           lineStyle: {
             color: '#ddd',
+          },
+        },
+        axisLabel: {
+          formatter: () => {
+            return `{MM}-{dd}`
           },
         },
       },
@@ -128,7 +128,6 @@ const Echarts = () => {
           name: '',
           nameLocation: 'middle',
           nameGap: 35,
-          max: 6,
           axisLine: {
             lineStyle: {
               color: '#015DD5',
@@ -188,7 +187,7 @@ const Echarts = () => {
         },
       ],
     }
-  }, [ dims, tvl, isDark, data ])
+  }, [dims, tvl, isDark, data])
 
   return (
     <Echart>

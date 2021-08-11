@@ -62,9 +62,9 @@ const BlockItem = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  gap: 20px;
   @media screen and (max-width: 1024px) {
     flex-direction: column;
-    gap: 20px;
   }
 `
 const Earn = styled.div`
