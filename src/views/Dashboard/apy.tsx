@@ -8,7 +8,6 @@ import usePersistState from 'hooks/usePersistState'
 import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
 import { latinise } from 'utils/latinise'
 import { Pool } from 'state/types'
-import { ViewMode } from '../Pools/components/ToggleView/ToggleView'
 import AprRow from '../Pools/components/PoolCard/AprRow2'
 import { getAprData, getCakeVaultEarnings } from '../Pools/helpers'
 
@@ -20,7 +19,6 @@ const Pools: React.FC = () => {
   const { pools: poolsWithoutAutoVault } = usePools(account)
   const [stakedOnly] = usePersistState(false, { localStorageKey: 'hubdao_pool_staked' })
   const [numberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
-  const [viewMode] = useState('CARD')
   const [searchQuery] = useState('')
   const [sortOption] = useState('hot')
   const {
@@ -124,8 +122,9 @@ const Pools: React.FC = () => {
     return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
 
-  const cardLayout = <AprRow pool={poolsToShow()[0]} performanceFee={performanceFeeAsDecimal} />
-  return <> {viewMode === ViewMode.CARD ? cardLayout : ''}</>
+  return (
+    <AprRow pool={poolsToShow()[0]} performanceFee={performanceFeeAsDecimal} />
+  )
 }
 
 export default Pools

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import BigNumber from 'bignumber.js'
+import request, { gql } from 'graphql-request'
+import { getUnixTime, startOfDay, subDays, format } from 'date-fns'
 import ReactEcharts from 'echarts-for-react'
 import styled from 'styled-components'
 import useTheme from 'hooks/useTheme'
 import rawData from './rawData.json'
-import { Tvl } from './tvl'
+import { useTvl } from './tvl'
 
 const Echart = styled.div`
   width: 100%;
@@ -14,11 +17,12 @@ const Echart = styled.div`
 `
 
 const Echarts = () => {
-  const data = rawData.data.map((entry) => {
-    return [entry.time, entry.windSpeed, entry.R, entry.waveHeight]
-  })
+  const [ data, setData ] = useState([])
+
   const { isDark } = useTheme()
-  const dims = {
+  const tvl = useTvl()
+
+  const dims = useMemo(() => ({
     time: 0,
     windSpeed: 1,
     R: 2,
@@ -26,19 +30,60 @@ const Echarts = () => {
     weatherIcon: 2,
     minTemp: 3,
     maxTemp: 4,
-  }
+  }), [])
+
+  useEffect(() => {
+    const timestamp = getUnixTime(subDays(startOfDay(new Date), 7)).toString()
+
+    async function fetchGraph() {
+      const response = await request(
+        'https://n5.hg.network/subgraphs/name/hubfarms/heco',
+        gql`
+          query getPoolHistories($timestamp: String!) {
+            poolHistories(
+              orderBy: "timestamp"
+              orderDirection: asc
+              where: { timestamp_gte: $timestamp }
+            ) {
+              pool {
+                id
+                pair
+              }
+              timestamp
+              entryUSD
+              exitUSD
+            }
+          }
+        `,
+        { timestamp }
+      )
+
+      const histories: [string, BigNumber][] = Object.entries(
+        response.poolHistories.reduce((kv, pool) => {
+          const { entryUSD, exitUSD } = pool
+          const day = format(pool.timestamp * 1000, 'yyyy-MM-dd')
+          const usd = new BigNumber(entryUSD).minus(exitUSD).plus(kv[day] || new BigNumber(0))
+
+          kv[day] = usd
+          return kv
+        }, {})
+      )
+
+      const result = histories.map(([key, val]) => [ key, '', '', val.div(1e12).toFixed(2) ])
+      setData([ ...result ])
+
+      console.log('真实数据: ', result);
+    }
+
+    fetchGraph()
+  }, [setData])
+
   // 配置对象
-  const getOption = () => {
+  const option = useMemo(() => {
     return {
-      // title: {
-      //     left: 'center'
-      // },
-      // tooltip: {
-      //     trigger: 'axis',
-      // },
       title: [
         {
-          text: `TLV $${Tvl()}`,
+          text: `TLV $${tvl}`,
           left: '1%',
           top: '10px',
           textStyle: {
@@ -47,18 +92,7 @@ const Echarts = () => {
             color: isDark ? '#fff' : '#2f303f',
           },
         },
-        // {
-        //   text: '2021-05-19 오후 10:00 기준',
-        //   right: '1%',
-        //   top: '10px',
-        //   textStyle: {
-        //     fontSize: '14px',
-        //     fontWeight: 300,
-        //     color: '#727272',
-        //   },
-        // },
       ],
-      // 高度
       grid: {
         top: 50,
         bottom: 40,
@@ -107,12 +141,6 @@ const Echarts = () => {
             },
           },
         },
-        // {
-        //     axisLine: {show: false},
-        //     axisTick: {show: false},
-        //     axisLabel: {show: false},
-        //     splitLine: {show: false}
-        // }
       ],
 
       dataZoom: [
@@ -121,12 +149,6 @@ const Echarts = () => {
           xAxisIndex: 0,
           minSpan: 5,
         },
-        // {
-        //     type: 'slider',
-        //     xAxisIndex: 0,
-        //     minSpan: 5,
-        //     bottom: 50
-        // }
       ],
       series: [
         {
@@ -157,33 +179,6 @@ const Echarts = () => {
               ],
             },
           },
-          //  markLine: {
-          //     silent: true,
-          //     lineStyle: {
-          //         color: '#333'
-          //     },
-          //     data: [{
-          //         yAxis: 1
-          //     }, {
-          //         yAxis: 2
-          //     }, {
-          //         yAxis: 3
-          //     }, {
-          //         yAxis: 4
-          //     }, {
-          //         yAxis: 5
-          //     }]
-          //  },
-          // lineStyle: {
-          //     normal: {
-          //         color: 'rgba(88,160,253,1)'
-          //     }
-          // // },
-          // itemStyle: {
-          //     normal: {
-          //         color: 'rgba(88,160,253,1)'
-          //     }
-          // },
           encode: {
             x: dims.time,
             y: dims.waveHeight,
@@ -193,11 +188,11 @@ const Echarts = () => {
         },
       ],
     }
-  }
+  }, [ dims, tvl, isDark, data ])
 
   return (
     <Echart>
-      <ReactEcharts option={getOption()} style={{ width: '100%', height: '100%' }} />
+      <ReactEcharts option={option} style={{ width: '100%', height: '100%' }} />
     </Echart>
   )
 }
