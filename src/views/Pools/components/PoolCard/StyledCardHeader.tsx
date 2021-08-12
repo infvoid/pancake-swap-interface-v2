@@ -114,7 +114,7 @@ const StyledCardHeader: React.FC<{
 
   return (
     <Wrapper isFinished={isFinished} background={background}>
-      <Flex alignItems="center" justifyContent="left">
+      <Flex alignItems="center" justifyContent="left" mb="20px">
         {/* 注释 */}
         {/* {isAutoVault ? (
           <CakeVaultTokenPairImage width={64} height={64} />
@@ -137,6 +137,14 @@ const StyledCardHeader: React.FC<{
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
         </Flex>
       </Flex>
+
+      {stakingToken.symbol === 'HT' ? (
+        <Text fontSize="14px" color={isFinished ? 'textDisabled' : 'textSubtle'}>
+          {t('Maximum deposit HT per user is 10 HT')}
+        </Text>
+      ) : (
+        ''
+      )}
     </Wrapper>
   )
 }

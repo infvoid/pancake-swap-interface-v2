@@ -29,7 +29,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
           stakingToken={stakingToken}
           isFinished={isFinished && sousId !== 0}
         />
-        <CardBody>
+        <CardBody p={stakingToken?.symbol === 'HT' ? '0 24px 24px' : '24px'}>
           <AprRow pool={pool} />
           <Flex mt="24px" flexDirection="column">
             {account ? (

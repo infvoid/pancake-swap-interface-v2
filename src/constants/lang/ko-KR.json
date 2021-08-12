@@ -1315,5 +1315,6 @@
   "APR":"연이율",
   "Action":"액션!",
   "In Stake HUB":"스테이킹 허브",
-  "Bridge":"체인변환"
+  "Bridge":"체인변환",
+  "Maximum deposit HT per user is 10 HT":"유저 당 예치 가능한 HT의 최대 수량은 10 HT입니다."
 }
