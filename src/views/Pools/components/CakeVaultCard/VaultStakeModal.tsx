@@ -111,7 +111,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         })
     } else {
       cakeVaultContract.methods
-        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
+        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0))
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
         .send({ from: account })
@@ -135,7 +135,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
 
   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
     cakeVaultContract.methods
-      .deposit(convertedStakeAmount.toString())
+      .deposit(convertedStakeAmount.toFixed(0))
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
       .send({ from: account })
