@@ -34,8 +34,8 @@ const farms: FarmConfig[] = [
       128: '0x085D8cc74230440591073c298117AFF1aAc54D6e',
       256: '',
     },
-    token: tokens.husd,
-    quoteToken: tokens.hd,
+    token: tokens.hd,
+    quoteToken: tokens.husd,
     farmCategory: FarmCategory.HD,
   },
   {
