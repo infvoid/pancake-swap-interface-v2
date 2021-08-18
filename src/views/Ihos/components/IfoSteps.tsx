@@ -148,10 +148,10 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
         return (
           <CardBody>
             <Heading as="h4" mb="16px">
-              {t('Get HD-BKC LP Tokens')}
+              {t('Get HD-HT LP Tokens')}
             </Heading>
             <Text color="textSubtle" small>
-              {t('Stake HD and BKC in the liquidity pool to get LP tokens.')} <br />
+              {t('Stake HD and HT in the liquidity pool to get LP tokens.')} <br />
               {t('You’ll spend them to buy IHO sale tokens.')}
             </Text>
             <StyleButton
@@ -185,7 +185,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent HD-BKC LP tokens will be returned to your wallet.'
+                'After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent HD-HT LP tokens will be returned to your wallet.'
               )}
             </Text>
           </CardBody>
