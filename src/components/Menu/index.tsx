@@ -21,9 +21,25 @@ const Menu: React.FC = (props) => {
   const cakePriceUsd = priceData.toNumber()
   const profile = useGetLocalProfile()
 
+  function getLang(_lang) {
+    let lang = []
+    switch (_lang) {
+      case "ko":
+        lang = kolinks
+        break
+      case "en":
+        lang = links
+        break
+    //   case "zh-CN":
+    //     lang = kolinks
+    //     break
+    }
+    return lang
+  }
+
   return (
     <UikitMenu
-      links={(selectedLanguage?.code || '') === 'ko' ? kolinks : links}
+      links={getLang(selectedLanguage?.code || '')}
       account={account as string}
       login={login}
       logout={logout}
@@ -34,8 +50,8 @@ const Menu: React.FC = (props) => {
       setLang={setSelectedLanguage}
       cakePriceUsd={cakePriceUsd}
       profile={profile}
-      connectTitle={TranslateString(1, "Connect to a wallet")}
-      learnConnect={TranslateString(1, "Learn how to connect")}
+      connectTitle={TranslateString(1, 'Connect to a wallet')}
+      learnConnect={TranslateString(1, 'Learn how to connect')}
       {...props}
     />
   )

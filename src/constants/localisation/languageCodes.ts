@@ -1,9 +1,10 @@
 import koKR from "../lang/ko-KR.json"
+// import zhCN from "../lang/zh-CN.json"
 
 export const EN = { code: 'en', language: 'English',src:null}
 // export const AR = { code: 'ar', language: 'العربية' }
 // export const BN = { code: 'bn', language: 'বাংলা'}
-// export const ZHCN = { code: 'zh-CN', language: '简体中文' }
+// export const ZHCN = { code: 'zh-CN', language: '简体中文',src:zhCN }
 // export const ZHTW = { code: 'zh-TW', language: '繁體中文' }
 // export const NL = { code: 'nl', language: 'Nederlands' }
 // export const FIL = { code: 'fil', language: 'Filipino' }
