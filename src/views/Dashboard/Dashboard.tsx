@@ -15,6 +15,7 @@ import { latinise } from 'utils/latinise'
 import useTheme from 'hooks/useTheme'
 import { FarmWithStakedValue } from '../Farms/components/FarmCard/FarmCard'
 import { RowProps } from '../Farms/components/FarmTable/Row'
+import { OneDayData } from './OneDayData'
 import Echarts from './Echarts'
 import Apy from './apy'
 
@@ -500,6 +501,8 @@ const Dashboard: React.FC = () => {
     maximumFractionDigits: 3,
   })
 
+  const [ volume, fee ] = OneDayData()
+
   return (
     <>
       <Header>
@@ -600,8 +603,8 @@ const Dashboard: React.FC = () => {
               <p>{t('Total Burned HD')} : 1,402,301 HD</p>
             </div>
             <div className="right">
-              <p>{t('Volume')} : $104,203,293</p>
-              <p>{t('Fee')} : $291,392</p>
+              <p>{t('Volume')} : ${volume}</p>
+              <p>{t('Fee')} : ${fee}</p>
             </div>
           </Price>
         </BlockItem>
