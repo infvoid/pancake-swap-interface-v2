@@ -18,6 +18,7 @@ import { RowProps } from '../Farms/components/FarmTable/Row'
 import { OneDayData } from './OneDayData'
 import Echarts from './Echarts'
 import Apy from './apy'
+import { HDInfo } from './info'
 
 const Header = styled.div`
   padding-top: 50px;
@@ -339,6 +340,7 @@ const Pairs = styled.div`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Dashboard: React.FC = () => {
+  const HDData:any = HDInfo()
   const { t } = useTranslation()
   const { isDark } = useTheme()
   const textColor = isDark ? '#ffefb4' : '#392324'
@@ -501,7 +503,7 @@ const Dashboard: React.FC = () => {
     maximumFractionDigits: 3,
   })
 
-  const [ volume, fee ] = OneDayData()
+  const [volume, fee] = OneDayData()
 
   return (
     <>
@@ -598,13 +600,17 @@ const Dashboard: React.FC = () => {
               <p>
                 {t('HD Price')} : ${HDPrice}
               </p>
-              <p>{t('Clrculating supply')} : 1.392.391 HD</p>
-              <p>{t('Remaining Token to be mined')} : 19,203,193 </p>
-              <p>{t('Total Burned HD')} : 1,402,301 HD</p>
+              <p>{t('Clrculating supply')} : {Number(HDData?.circulating).toLocaleString(undefined, { maximumFractionDigits: 2 })} HD</p>
+              <p>{t('Remaining Token to be mined')} : {Number(HDData?.remaining).toLocaleString(undefined, { maximumFractionDigits: 2 })} </p>
+              <p>{t('Total Burned HD')} : {HDData?.burned} HD</p>
             </div>
             <div className="right">
-              <p>{t('Volume')} : ${volume}</p>
-              <p>{t('Fee')} : ${fee}</p>
+              <p>
+                {t('Volume')} : ${volume}
+              </p>
+              <p>
+                {t('Fee')} : ${fee}
+              </p>
             </div>
           </Price>
         </BlockItem>
