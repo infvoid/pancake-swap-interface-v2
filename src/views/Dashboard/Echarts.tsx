@@ -35,6 +35,7 @@ const Echarts = () => {
   )
 
   useEffect(() => {
+    const today = format(new Date(), 'yyyy-MM-dd')
     const timestamp = getUnixTime(subDays(startOfDay(new Date()), 7)).toString()
 
     async function fetchGraph() {
@@ -46,6 +47,8 @@ const Echarts = () => {
               pool {
                 id
                 pair
+                entryUSD
+                exitUSD
               }
               timestamp
               entryUSD
@@ -57,10 +60,14 @@ const Echarts = () => {
       )
 
       const histories: [string, BigNumber][] = Object.entries(
-        response.poolHistories.reduce((kv, pool) => {
+        response.poolHistories.filter(farms => Number(farms.pool.id) !== 0).reduce((kv, pool) => {
           const { entryUSD, exitUSD } = pool
           const day = format(pool.timestamp * 1000, 'yyyy-MM-dd')
-          const usd = new BigNumber(entryUSD).minus(exitUSD).plus(kv[day] || new BigNumber(0))
+          let usd = new BigNumber(entryUSD).minus(exitUSD).plus(kv[day] || new BigNumber(0))
+
+          if (day === today) {
+            usd = new BigNumber(pool.pool.entryUSD).minus(pool.pool.exitUSD).plus(kv[day] || new BigNumber(0))
+          }
 
           kv[day] = usd
           return kv
