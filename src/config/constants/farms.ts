@@ -13,7 +13,7 @@ const farms: FarmConfig[] = [
       256: '',
     },
     token: tokens.hd,
-    quoteToken: tokens.husd,
+    quoteToken: tokens.hd,
     farmCategory: FarmCategory.HD,
   },
   {
@@ -34,8 +34,8 @@ const farms: FarmConfig[] = [
       128: '0x085D8cc74230440591073c298117AFF1aAc54D6e',
       256: '',
     },
-    token: tokens.hd,
-    quoteToken: tokens.husd,
+    token: tokens.husd,
+    quoteToken: tokens.hd,
     farmCategory: FarmCategory.HD,
   },
   {
@@ -78,8 +78,8 @@ const farms: FarmConfig[] = [
       128: '0x397d53b4F599D456Ea09734BdFe93D35A2c20050',
       256: '',
     },
-    token: tokens.hpt,
-    quoteToken: tokens.hd,
+    token: tokens.hd,
+    quoteToken: tokens.hpt,
     farmCategory: FarmCategory.HD,
   },
   {
@@ -89,8 +89,8 @@ const farms: FarmConfig[] = [
       128: '0x0B357bf28B57800E73fF4da867b09930cBaddc85',
       256: '',
     },
-    token: tokens.boo,
-    quoteToken: tokens.hd,
+    token: tokens.hd,
+    quoteToken: tokens.boo,
     farmCategory: FarmCategory.HD,
   },
   {
@@ -111,8 +111,8 @@ const farms: FarmConfig[] = [
       128: '0x67C821ad2b76Eb0482191Bc182A9D3db420Df230',
       256: '',
     },
-    token: tokens.hdot,
-    quoteToken: tokens.hd,
+    token: tokens.hd,
+    quoteToken: tokens.hdot,
     farmCategory: FarmCategory.HD,
   },
   {
