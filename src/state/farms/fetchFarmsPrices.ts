@@ -58,7 +58,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: 
   }
 
   if (farm.token.symbol === 'HD') {
-    return farm.tokenPriceVsQuote ? bnbPriceBusd.div(farm.tokenPriceVsQuote).div(2) : BIG_ZERO
+    return farm.tokenPriceVsQuote ? bnbPriceBusd.div(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
   if (!quoteTokenFarm) {
