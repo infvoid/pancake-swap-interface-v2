@@ -6,7 +6,7 @@ import { useTranslation } from 'hooks/useI18n'
 const WithdrawalFeeTimer: React.FC<{ secondsRemaining: number }> = ({ secondsRemaining }) => {
   const { t } = useTranslation()
   const { days, hours, minutes } = getTimePeriods(secondsRemaining)
-
+    console.log(days)
   return (
     <Text fontSize="14px">
       {t('%day%d', { day: days })} :{t('%hour%h', { hour: hours })} :{t('%minute%m', { minute: minutes })}

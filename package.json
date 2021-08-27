@@ -123,5 +123,6 @@
     ]
   },
   "license": "GPL-3.0-or-later",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "proxy" : "https://app.hubdao.io"
 }
