@@ -64,7 +64,7 @@ const Nfts: Nft[] = [
     images: {
       lg: 'circular-lg.png',
       md: 'circular-md.png',
-      sm: 'circular-sm.png',
+      sm: 'circular-md.png',
       ipfs: 'https://gateway.pinata.cloud/ipfs/QmQgo9mn7mBxBQhAJijddQ5tf1KWtbKBVfrVsYiefhoTDR/circular.png',
       blur: 'circular-blur.png',
     },
