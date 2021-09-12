@@ -69,6 +69,10 @@ const Echarts = () => {
             usd = new BigNumber(pool.pool.entryUSD).minus(pool.pool.exitUSD).plus(kv[day] || new BigNumber(0))
           }
 
+          if (usd.lt(0)) {
+            usd = usd.plus(pool.pool.entryUSD)
+          }
+
           kv[day] = usd
           return kv
         }, {})
