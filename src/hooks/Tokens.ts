@@ -103,7 +103,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const isHT = currencyId?.toUpperCase() === 'HT'
+  const isHT = currencyId?.toUpperCase() === 'LKEA'
   const token = useToken(isHT ? undefined : currencyId)
   return isHT ? ETHER : token
 }

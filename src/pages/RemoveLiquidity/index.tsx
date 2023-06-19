@@ -558,14 +558,14 @@ export default function RemoveLiquidity({
                               to={`/remove/${currencyA === ETHER ? WETH[chainId].address : currencyIdA}/${currencyB === ETHER ? WETH[chainId].address : currencyIdB
                                 }`}
                             >
-                              {TranslateString(1188, 'Receive WHT')}
+                              {TranslateString(1188, 'Receive WLK')}
                             </StyledInternalLink>
                           ) : oneCurrencyIsWETH ? (
                             <StyledInternalLink
-                              to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'HT' : currencyIdA
-                                }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'HT' : currencyIdB}`}
+                              to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'LKEA' : currencyIdA
+                                }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'LKEA' : currencyIdB}`}
                             >
-                              {TranslateString(1190, 'Receive HT')}
+                              {TranslateString(1190, 'Receive LKEA')}
                             </StyledInternalLink>
                           ) : null}
                         </RowBetween>

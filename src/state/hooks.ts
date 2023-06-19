@@ -328,7 +328,8 @@ export const usePriceBnbBusd = (): BigNumber => {
 
 export const usePriceCakeBusd = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(1)
-  return new BigNumber(cakeBnbFarm.token.busdPrice)
+  console.log('IFO token price = %s', cakeBnbFarm.token.busdPrice);
+  return new BigNumber('1.00')
 }
 
 // Block
