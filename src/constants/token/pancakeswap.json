@@ -31,7 +31,7 @@
     "address": "0xe56C9B645C4fbF2aC3b4FF3323d7ad005F4EC5BC",
     "symbol": "DST",
     "decimals": 18,
-    "chainId": 128,
+    "chainId": 230505,
     "logoURI": "#"
   },
   {
@@ -39,7 +39,7 @@
     "address": "0xefc33B73f9301bD9fCD9FB4ee704CBC424a647B2",
     "symbol": "WLK",
     "decimals": 18,
-    "chainId": 128,
+    "chainId": 230505,
     "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/2502.png"
   }
 ]}
