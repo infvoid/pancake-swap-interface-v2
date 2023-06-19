@@ -51,7 +51,7 @@ export const useTvl = () => {
 
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
-      farmsToDisplay = farmsToDisplay.filter((item) => item.farmCategory === 'HD')
+      farmsToDisplay = farmsToDisplay.filter((item) => item.farmCategory === 'IT')
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         if (!farm.lpTotalInQuoteToken || !farm.quoteToken.busdPrice) {
           return farm
