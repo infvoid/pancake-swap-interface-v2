@@ -26,7 +26,7 @@ const tokens = {
   cake: {
     symbol: 'IT',
     address: {
-      128: '0xA161658ad97F70915136B773beecb72Cde221F31',
+      230505: '0xA161658ad97F70915136B773beecb72Cde221F31',
     },
     decimals: 18,
     projectLink: 'http://47.245.104.49',
@@ -41,7 +41,7 @@ const tokens = {
   hd: {
     symbol: 'IT',
     address: {
-      128: '0xA161658ad97F70915136B773beecb72Cde221F31',
+      230505: '0xA161658ad97F70915136B773beecb72Cde221F31',
     },
     decimals: 18,
     projectLink: 'http://47.245.104.49',
