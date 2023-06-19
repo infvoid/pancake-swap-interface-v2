@@ -9,13 +9,13 @@ import { useMasterchef, useSousChef } from './useContract2'
 export const useHarvest = (farmPid: number) => {
   let farmCategory
   if (farmPid > 10000 && farmPid < 20000) {
-    farmCategory = FarmCategory.HDT
+    farmCategory = FarmCategory.IT
     farmPid -= 10000
   } else if (farmPid > 20000 && farmPid < 30000) {
-    farmCategory = FarmCategory.BKC
+    farmCategory = FarmCategory.IT
     farmPid -= 20000
   } else {
-    farmCategory = FarmCategory.HD
+    farmCategory = FarmCategory.IT
   }
 
   const { account } = useWeb3React()
@@ -33,8 +33,8 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
-  const masterChefContract = useMasterchef(FarmCategory.HD)
-  const hdtChefContract = useMasterchef(FarmCategory.HDT)
+  const masterChefContract = useMasterchef(FarmCategory.IT)
+  const hdtChefContract = useMasterchef(FarmCategory.IT)
 
   const handleHarvest = useCallback(async () => {
     if (sousId === 0) {

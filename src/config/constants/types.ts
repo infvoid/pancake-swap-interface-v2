@@ -2,8 +2,7 @@ import BigNumber from 'bignumber.js'
 import { SerializedBigNumber,TranslatableText } from 'state/types'
 
 export interface Address {
-  256?: string
-  128: string
+  230505: string
 }
 
 export interface Token {
@@ -46,15 +45,16 @@ export interface Ifo {
 }
 
 export enum FarmCategory {
-  'HD'  = 'HD',
-  'HDT' = 'HDT',
-  'BKC' = 'BKC',
+  'IT'  = 'IT',
+  'HD'  = 'IT',
+  'HDT' = 'IT',
+  'BKC' = 'IT',
 }
 
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'CORE'      = 'Core',
-  'HT'        = 'HT', // Pools using native HT behave differently than pools using a token
+  'HT'      = 'LKEA', // Pools using native HT behave differently than pools using a token
   'AUTO'      = 'Auto',
 }
 

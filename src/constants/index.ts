@@ -1,6 +1,6 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
 
-export const ROUTER_ADDRESS = '0x767bbc9D5AF753CB7aB0b088748F19D8348eD95C'
+export const ROUTER_ADDRESS = '0xeCf38538c9Aa58b4358FA8486A619eb36d8E0974'
 
 // a list of tokens by chain 按链排列的令牌列表
 type ChainTokenList = {
@@ -9,23 +9,13 @@ type ChainTokenList = {
 
 export const CAKE = new Token(
   ChainId.MAINNET,
-  '0xA161658ad97F70915136B773beecb72Cde221F31',
+  '0xaC2af16818E171c461Ab103cB6284cC4e64b2b87',
   18,
-  'HD',
-  'HubDaoSwap Token'
+  'IT',
+  'IFO Token'
 )
-export const WHT = new Token(ChainId.MAINNET, '0x5545153CCFcA01fbd7Dd11C0b23ba694D9509A6F', 18, 'WHT', 'Wrapped HT')
-export const DAI = new Token(ChainId.MAINNET, '0x3D760a45D0887DFD89A2F5385a236B29Cb46ED2a', 18, 'DAI', 'Dai Stablecoin')
-export const HUSD = new Token(ChainId.MAINNET, '0x0298c2b32eaE4da002a15f36fdf7615BEa3DA047', 8, 'HUSD', 'Heco USD')
-export const HBTC = new Token(ChainId.MAINNET, '0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa', 18, 'HBTC', 'Heco BTC')
-export const USDT = new Token(ChainId.MAINNET, '0xa71EdC38d189767582C38A3145b5873052c3e47a', 18, 'USDT', 'Tether USD')
-export const ETH = new Token(
-  ChainId.MAINNET,
-  '0x64FF637fB478863B7468bc97D30a5bF3A428a1fD',
-  18,
-  'HT',
-  'Heco-Peg HECO Token'
-)
+export const WHT = new Token(ChainId.MAINNET, '0xefc33B73f9301bD9fCD9FB4ee704CBC424a647B2', 18, 'WLK', 'Wrapped LKEA')
+export const USDT = new Token(ChainId.MAINNET, '0xfE0fdB013C27567DDF2e67d2651e583B756121D9', 18, 'USDT', 'Tether USD')
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
@@ -35,7 +25,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading 用于构建交易的中介对
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, HBTC, USDT, ETH],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], USDT],
 }
 
 /**
@@ -50,20 +40,18 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity 用于添加流动性时在默认列表中显示
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, USDT],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], USDT],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend 用于构造我们在前端默认情况下考虑的所有对的列表
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, HBTC, USDT],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], USDT],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
     [CAKE, WHT],
-    [HUSD, USDT],
-    [DAI, USDT],
   ],
 }
 

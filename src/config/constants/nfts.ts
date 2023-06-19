@@ -5,8 +5,7 @@ export const IPFS_GATEWAY = ''
 export const nftSources: NftSource = {
   [NftType.PANCAKE]: {
     address: {
-      128: '0x68E0D2c403Fd6b29Bb622cdD59B2B3e78ec0d115',
-      256: '',
+      230505: '0x961b68AA784Dff180142c66FD85313cD457CF48c',
     },
     identifierKey: 'image',
   },

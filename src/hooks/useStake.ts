@@ -9,13 +9,13 @@ import { useMasterchef, useSousChef } from './useContract2'
 const useStake = (pid: number) => {
   let farmCategory
   if (pid > 10000 && pid < 20000) {
-    farmCategory = FarmCategory.HDT
+    farmCategory = FarmCategory.IT
     pid -= 10000
   } else if (pid > 20000 && pid < 30000) {
-    farmCategory = FarmCategory.BKC
+    farmCategory = FarmCategory.IT
     pid -= 20000
   } else {
-    farmCategory = FarmCategory.HD
+    farmCategory = FarmCategory.IT
   }
 
   const { account } = useWeb3React()
@@ -35,8 +35,8 @@ const useStake = (pid: number) => {
 export const useSousStake = (sousId: number, isUsingBnb = false) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const masterChefContract = useMasterchef(FarmCategory.HD)
-  const hdtChefContract = useMasterchef(FarmCategory.HDT)
+  const masterChefContract = useMasterchef(FarmCategory.IT)
+  const hdtChefContract = useMasterchef(FarmCategory.IT)
   const sousChefContract = useSousChef(sousId)
 
   const handleStake = useCallback(
